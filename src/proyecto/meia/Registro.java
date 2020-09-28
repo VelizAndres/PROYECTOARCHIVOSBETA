@@ -566,7 +566,12 @@ public class Registro extends javax.swing.JFrame {
             lines.set(3, "fecha_modificacion:" + now.toString());
             lines.set(4, "usuario_modificacion:" + usuario);
             String[] arrOfStr = lines.get(5).split(":"); 
-            int entries = parseInt(arrOfStr[1]) + 1;
+            int obt=0;
+            if(!(arrOfStr[1].trim().equals("")))
+            {
+              obt=parseInt(arrOfStr[1]);  
+            }
+            int entries = obt + 1;
             lines.set(5, "#_registros:" + entries);
             int entries2 = ObtenerDato("MEIA\\desc_bitacora_usuario.txt","registros_activos","Error"); 
             lines.set(6, "registros_activos:" + entries2);

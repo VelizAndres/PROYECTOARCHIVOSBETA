@@ -1,9 +1,9 @@
 nombre_simbolico:bitacora_usuario
 fecha_creacion:Mon Sep 28 03:23:14 CST 2020            
 usuario_creacion:josedeleon                       
-fecha_modificacion:Mon Sep 28 03:23:14 CST 2020
-usuario_modificacion:                    
-#_registros:    
-registros_activos:3
+fecha_modificacion:Mon Sep 28 06:45:14 CST 2020
+usuario_modificacion:Jose
+#_registros:1
+registros_activos:1
 registros_inactivos:   
 max_reorganizacion:3
