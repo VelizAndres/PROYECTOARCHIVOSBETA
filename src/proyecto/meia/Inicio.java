@@ -49,6 +49,7 @@ public class Inicio extends javax.swing.JFrame {
         lbl_usuario = new javax.swing.JLabel();
         lbl_rol = new javax.swing.JLabel();
         backupButton = new javax.swing.JButton();
+        btn_Mantenimi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,13 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btn_Mantenimi.setText("Mantenimiento");
+        btn_Mantenimi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MantenimiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,20 +91,21 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(189, 189, 189))
             .addGroup(layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(lbl_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(lbl_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(lbl_usuario)
-                            .addComponent(lbl_rol)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backupButton)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(lbl_usuario)
+                    .addComponent(lbl_rol))
                 .addContainerGap(176, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(backupButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Mantenimi)
+                .addGap(137, 137, 137))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +124,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(lbl_rol))
                     .addComponent(lbl_photo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addComponent(backupButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backupButton)
+                    .addComponent(btn_Mantenimi))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -276,6 +287,14 @@ public class Inicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backupButtonActionPerformed
 
+    private void btn_MantenimiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MantenimiActionPerformed
+                      MantenimientoUser abrir_mante = new MantenimientoUser();
+                    abrir_mante.GetUsuario(lbl_usuario.getText());
+                    abrir_mante.Rol= lbl_rol.equals("Administrador");
+                    abrir_mante.show();
+                    this.setVisible(false);       
+    }//GEN-LAST:event_btn_MantenimiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -315,6 +334,7 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backupButton;
+    public javax.swing.JButton btn_Mantenimi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
