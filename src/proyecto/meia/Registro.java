@@ -333,8 +333,15 @@ public class Registro extends javax.swing.JFrame {
                 boolean Guardado = LlenarArchivo(registro, path_bitacora);
                 
                 if(Guardado){                           
-                     //ACTUALIZAR DESCRIPTOR
-                                      
+                     //ACTUALIZAR DESCRIPTOR desc_bitacora_usuario
+                     //String[] test = LeerDescriptor("MEIA\\desc_bitacora_usuario.txt","Error");
+                     //sumarle +1 la cantidad de valores activos
+                     //actualziar usuario de modificacion
+                     //actualizar hora de modificacion
+                     
+                     //////////////////////////////////////////////////////////////////////////////////////////////////
+                     
+                     
                     //VERIFICAR REORGANIZACION
                     File file_desc_bitacora = new File("MEIA\\desc_bitacora_usuario.txt");
                     String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();
@@ -350,10 +357,7 @@ public class Registro extends javax.swing.JFrame {
                         String path_usuario = file_usuario.getAbsolutePath();
                         Reorganizar(path_usuario, path_bitacora);
                     }
-
-                    
-                    
-                        
+             
                     JOptionPane.showMessageDialog(rootPane, "GUARDADO EXITOSAMENTE!!!","Error", WIDTH);
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(txt_usuario.getText());
@@ -364,7 +368,7 @@ public class Registro extends javax.swing.JFrame {
                     abrir_inicio.lbl_photo.setIcon(img);
                     
                     abrir_inicio.show();
-                    this.setVisible(false);             
+                    this.setVisible(false);                   
                 }
             }    
         }    
@@ -559,31 +563,26 @@ public class Registro extends javax.swing.JFrame {
                LlenarArchivo(registro_valido, "MEIA\\temporal.txt");    
             }          
             
-            ///PENDIENTE HACER FUNCIONAR //////////////////////////////////////////////////////////////////////////////////////////
             //delete bitacora y master
-            File file_bitacora = new File("MEIA\\bitacora_usuario.txt");      
-            File file_usuario = new File("MEIA\\usuario.txt");
-            
-            
-            file_bitacora.delete();
-            file_usuario.delete();
-            
-            //rename temporal
-                
-            File antiguo = new File("MEIA\\temporal.txt");
+           
+            if(BorrarArchivos("MEIA\\bitacora_usuario.txt","MEIA\\usuario.txt")){
+                System.gc();   
+                File antiguo = new File("MEIA\\temporal.txt");
                 File nuevo = new File("MEIA\\usuario.txt");
-                
-            if(antiguo.renameTo(nuevo))
-            {
-            //create bitacora con encabezado
-            File file_bitacora_nuevo = new File("MEIA\\bitacora_usuario.txt");
-            FileWriter Escribir2 = new FileWriter(file_bitacora_nuevo,true);
-            BufferedWriter bw2 = new BufferedWriter(Escribir2);                
-            bw2.write(encabezado+ System.getProperty( "line.separator" ));
-            bw2.close();
-            Escribir.close(); 
-            }    
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                if(antiguo.renameTo(nuevo))
+                {
+                //create bitacora con encabezado
+                File file_bitacora_nuevo = new File("MEIA\\bitacora_usuario.txt");
+                FileWriter Escribir2 = new FileWriter(file_bitacora_nuevo,true);
+                BufferedWriter bw2 = new BufferedWriter(Escribir2);                
+                bw2.write(encabezado+ System.getProperty( "line.separator" ));
+                bw2.close();
+                bw2 = null;
+                Escribir.close(); 
+                Escribir = null;
+                }    
+            }           
  
         }
         catch(Exception ex)
@@ -674,6 +673,66 @@ public class Registro extends javax.swing.JFrame {
         return null;
     }
     
+    boolean BorrarArchivos(String path1, String path2)
+    {
+        System.gc();
+         File file_bitacora = new File(path1);
+         String path_bi = file_bitacora.getAbsolutePath();     
+         File file_bitacora2 = new File(path_bi);      
+
+         File file_usuario = new File(path2);
+         String path_us = file_usuario.getAbsolutePath();     
+         File file_usuario2 = new File(path_us); 
+         
+         boolean delete1 = file_bitacora2.delete();   
+         boolean delete2 = file_usuario2.delete();
+         if(delete1 && delete2) return true;
+         
+         return    false; 
+    }
+    
+
+    
+    String[] LeerDescriptor(String path, String strError){
+        ArrayList<String> valores = new ArrayList<String>();
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split(":");
+                            valores.add(split[1].trim());
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError = ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        String[] result = new String[valores.size()];
+        result = valores.toArray(result);
+        return result;  
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_enviar;
