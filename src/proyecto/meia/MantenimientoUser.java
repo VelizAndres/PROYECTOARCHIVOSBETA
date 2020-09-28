@@ -83,29 +83,25 @@ public class MantenimientoUser extends javax.swing.JFrame {
         txt_BuscarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setText("MODIFICACIÓN");
+        jLabel1.setText("MENÚ MANTENIMIENTO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btn_BuscarUser)
-                                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(btn_BuscarUser)
+                            .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1))
                 .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -258,14 +254,18 @@ public class MantenimientoUser extends javax.swing.JFrame {
     
     
     private void btn_BuscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarUserActionPerformed
+         if(!(txt_BuscarUser.getText().equals(""))){
                     Modificacion abrir_mod = new Modificacion();
                     abrir_mod.Name_User=txt_BuscarUser.getText();
                     abrir_mod.Admin_User= txt_Usuario.getText();
                     abrir_mod.Admin=Rol;
                     abrir_mod.Creador(txt_BuscarUser.getText());
                     abrir_mod.show();
-                    this.setVisible(false); 
-                    // TODO add your handling code here:
+                    this.setVisible(false); }
+         else{
+            JOptionPane.showMessageDialog(rootPane, "DEBE INGREASAR UN NOMBRE","Error", WIDTH);            
+         }
+         // TODO add your handling code here:
     }//GEN-LAST:event_btn_BuscarUserActionPerformed
 
     private void btn_InforUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforUserActionPerformed
