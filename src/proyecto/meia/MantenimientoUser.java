@@ -35,9 +35,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
     public MantenimientoUser() {
         initComponents();
         txt_Usuario.setVisible(true);
-        btn_Eliminar.setVisible(!Rol);
-        btn_BuscarUser.setVisible(Rol);
-        txt_BuscarUser.setVisible(Rol);
+      
     }
 
     /**
@@ -54,7 +52,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
         txt_Usuario = new javax.swing.JTextField();
         btn_InforUser = new javax.swing.JButton();
         txt_BuscarUser = new javax.swing.JTextField();
-        lblEtiqueta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,43 +82,48 @@ public class MantenimientoUser extends javax.swing.JFrame {
 
         txt_BuscarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        lblEtiqueta.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setText("MODIFICACIÓN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_BuscarUser)
-                            .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(32, 32, 32)
-                .addComponent(lblEtiqueta)
-                .addGap(0, 86, Short.MAX_VALUE))
+                            .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_BuscarUser)
+                                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_InforUser)
-                    .addComponent(lblEtiqueta))
+                    .addComponent(btn_InforUser))
                 .addGap(18, 18, 18)
                 .addComponent(btn_Eliminar)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_BuscarUser)
                     .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         pack();
@@ -370,12 +373,18 @@ public class MantenimientoUser extends javax.swing.JFrame {
     {
         txt_Usuario.setText (User);
     }
+    public void MoodFact(boolean Roles)
+    {
+        btn_Eliminar.setVisible(!Roles);
+        btn_BuscarUser.setVisible(Roles);
+        txt_BuscarUser.setVisible(Roles);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_BuscarUser;
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_InforUser;
-    private javax.swing.JLabel lblEtiqueta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txt_BuscarUser;
     private javax.swing.JTextField txt_Usuario;
     // End of variables declaration//GEN-END:variables
