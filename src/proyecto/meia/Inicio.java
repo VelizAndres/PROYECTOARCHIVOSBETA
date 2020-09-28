@@ -289,7 +289,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_MantenimiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MantenimiActionPerformed
                       MantenimientoUser abrir_mante = new MantenimientoUser();
-                    abrir_mante.GetUsuario(lbl_usuario.getText());
+                      String user=lbl_usuario.getText();
+                      abrir_mante.GetUsuario(user.trim());
                     abrir_mante.Rol= lbl_rol.equals("Administrador");
                     abrir_mante.show();
                     this.setVisible(false);       

@@ -35,7 +35,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
     public MantenimientoUser() {
         initComponents();
         txt_Usuario.setVisible(true);
-        btn_Eliminar.setVisible(Rol);
+        btn_Eliminar.setVisible(!Rol);
         btn_BuscarUser.setVisible(Rol);
         txt_BuscarUser.setVisible(Rol);
     }
@@ -54,6 +54,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
         txt_Usuario = new javax.swing.JTextField();
         btn_InforUser = new javax.swing.JButton();
         txt_BuscarUser = new javax.swing.JTextField();
+        lblEtiqueta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +84,8 @@ public class MantenimientoUser extends javax.swing.JFrame {
 
         txt_BuscarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
+        lblEtiqueta.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,7 +102,9 @@ public class MantenimientoUser extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 152, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(lblEtiqueta)
+                .addGap(0, 86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +112,8 @@ public class MantenimientoUser extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_InforUser))
+                    .addComponent(btn_InforUser)
+                    .addComponent(lblEtiqueta))
                 .addGap(18, 18, 18)
                 .addComponent(btn_Eliminar)
                 .addGap(33, 33, 33)
@@ -145,9 +151,11 @@ public class MantenimientoUser extends javax.swing.JFrame {
             FileReader Lector = new  FileReader(file_Use);
             BufferedReader bl= new BufferedReader(Lector);
             String[] Datos= bl.readLine().split("\\|");
-            while(!(Datos[0].trim().equals(Name_User))  || Datos == null)
+            String Usuario_Nombre=Datos[0].trim();
+            while(!Usuario_Nombre.equals(Name_User.trim()))
                 {
                     Datos=bl.readLine().split("\\|");
+                    Usuario_Nombre=Datos[0].trim();
                     Number_Line++;
                 }
                 bl.close();
@@ -190,13 +198,15 @@ public class MantenimientoUser extends javax.swing.JFrame {
             return false;
   }
 
-    public String[] busqueda(String Path,String Name_User)
+      public String[] busqueda(String Path,String Name_User)
     {
-        String Data[]= new String[9];
+        
             Number_Line=0;
+            String Data[]= new String[10];
             File file_Use = new File(Path);
        try
-       {FileReader Lector = new  FileReader(file_Use);
+       {
+           FileReader Lector = new  FileReader(file_Use);
             BufferedReader bl= new BufferedReader(Lector);
             String[] Datos= bl.readLine().split("\\|");
             while(!(Datos[0].trim().equals(Name_User))  || Datos == null)
@@ -208,12 +218,12 @@ public class MantenimientoUser extends javax.swing.JFrame {
                 Lector.close();
                if(Datos!=null)
                 {
-                Data[0] = String.format("%-20s", Datos[0].trim());        
-                Data[1] = String.format("%-30s", Datos[1].trim());
-                Data[2] = String.format("%-30s", Datos[2].trim());
-                Data[3] = String.format("%-40s", Datos[3].trim());
-                Data[4] = String.format("%-3s", Datos[4].trim());
-                     if( Data[4].equals("1"))
+                Data[0] = Datos[0].trim();        
+                Data[1] = Datos[1].trim();
+                Data[2] = Datos[2].trim();
+                Data[3] = Datos[3].trim();
+                Data[4] = Datos[4].trim();
+               if( Data[4].equals("1"))
                 {
                     Data[4]="Administrador";
                 }
@@ -221,43 +231,46 @@ public class MantenimientoUser extends javax.swing.JFrame {
                 {
                   Data[4]="Usuario";
                 }
-                Data[5] = String.format("%-16s", Datos[5].trim());
-                Data[6] = String.format("%-40s", Datos[6].trim());
-                Data[7] = String.format("%-9s", Datos[7].trim());
-                Data[8] = String.format("%-200s", Datos[8].trim());
-                String f_estatus = String.format("%-7s", Datos[9].trim()); 
-                if(f_estatus.equals("0"))
+                Data[5] = Datos[5].trim();
+                Data[6] = Datos[6].trim();
+                Data[7] = Datos[7].trim();
+                Data[8] = Datos[8].trim();
+                String f_estatus = Datos[9].trim(); 
+               if( f_estatus.equals("1"))
                 {
-                    Data[9]="Vigente";
+                    Data[4]="Vigente";
                 }
                 else
                 {
-                    Data[9]="No Vigente";
+                  Data[4]="No Vigente";
                 }
                 }
+               return Data;
        }
        catch(Exception ex)
                {
                 return new String[9];
                }
-       return new String[9];
     }
     
     
     private void btn_BuscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarUserActionPerformed
-                      Modificacion abrir_mod = new Modificacion();
-                     abrir_mod.Name_User=txt_BuscarUser.getText();
-                     abrir_mod.Admin=Rol;
-                     abrir_mod.show();
+                    Modificacion abrir_mod = new Modificacion();
+                    abrir_mod.Name_User=txt_BuscarUser.getText();
+                    abrir_mod.Admin_User= txt_Usuario.getText();
+                    abrir_mod.Admin=Rol;
+                    abrir_mod.Creador(txt_BuscarUser.getText());
+                    abrir_mod.show();
                     this.setVisible(false); 
-            // TODO add your handling code here:
+                    // TODO add your handling code here:
     }//GEN-LAST:event_btn_BuscarUserActionPerformed
 
     private void btn_InforUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforUserActionPerformed
                      Modificacion abrir_mod = new Modificacion();
                      abrir_mod.Name_User=txt_Usuario.getText();
+                     abrir_mod.Creador(txt_Usuario.getText());
                      abrir_mod.show();
-                    this.setVisible(false);  
+                     this.setVisible(false);  
     }//GEN-LAST:event_btn_InforUserActionPerformed
 
     /**
@@ -362,6 +375,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
     private javax.swing.JButton btn_BuscarUser;
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_InforUser;
+    private javax.swing.JLabel lblEtiqueta;
     private javax.swing.JTextField txt_BuscarUser;
     private javax.swing.JTextField txt_Usuario;
     // End of variables declaration//GEN-END:variables

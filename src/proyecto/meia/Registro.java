@@ -348,7 +348,7 @@ public class Registro extends javax.swing.JFrame {
                     
                     
                     int registros_bitacora = ObtenerDato(path_desc_bitacora, 7);                     
-                    int max_reorganizacion = ObtenerDato(path_desc_bitacora, 9);
+                    int max_reorganizacion = 3;
                     
                     if(registros_bitacora == max_reorganizacion)
                     {

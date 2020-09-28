@@ -46,25 +46,7 @@ public class Modificacion extends javax.swing.JFrame {
      */
     public Modificacion() {
         initComponents();
-        String Data[]= new String[9];
-        String Path="MEIA\\bitacora_usuario.txt";
-        if((Data=busqueda(Path,Name_User))!=null) 
-        {
-        } 
-        else
-        {
-                Path="MEIA\\usuario.txt";
-                 Data= busqueda(Path,Name_User);
-        }
-        txt_usuario.setText(Data[0]);
-        txt_nombre.setText(Data[1]);
-        txt_apellido.setText(Data[2]);
-        txt_rol.setText(Data[4]);
-        txt_fecha_nacimiento.setText(Data[5]);
-        txt_correo.setText(Data[6]);
-        txt_telefono.setText(Data[7]);
-        txt_estatus.setText(Data[9]);
-        btn_Delete.setVisible(Admin);
+            btn_enviar.enable(true);
     }
 
     /**
@@ -279,7 +261,7 @@ public class Modificacion extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(lbl_password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -287,7 +269,32 @@ public class Modificacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ public void Creador(String Text) 
+    {
+        Name_User=Text.trim();
+        String Data[]= new String[10];
+        String Path="MEIA\\bitacora_usuario.txt";
+        Data = busqueda(Path,Name_User);
+        if(Data!=null) 
+        {
+        } 
+        else
+        {
+                Path="MEIA\\usuario.txt";
+                 Data= busqueda(Path,Name_User);
+        }
+        txt_usuario.setText(Data[0]);
+        txt_nombre.setText(Data[1]);
+        txt_apellido.setText(Data[2]);
+        txt_rol.setText(Data[4]);
+        txt_fecha_nacimiento.setText(Data[5]);
+        txt_correo.setText(Data[6]);
+        txt_telefono.setText(Data[7]);
+        txt_fotografia.setText(Data[8]);
+        txt_estatus.setText(Data[9]);
+        btn_Delete.setVisible(Admin);
+    }
+    
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreActionPerformed
@@ -468,7 +475,7 @@ public class Modificacion extends javax.swing.JFrame {
     
     
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        String Name_User=txt_usuario.getText(); 
+        String Name_User=txt_usuario.getText().trim(); 
         String Path="MEIA\\bitacora_usuario.txt";
         if(Eliminacion_Logica(Path,Name_User)) 
         {
@@ -482,7 +489,7 @@ public class Modificacion extends javax.swing.JFrame {
         else
         { JOptionPane.showMessageDialog(rootPane, "NO SE HA ENCONTRADO!!!","Error", WIDTH);}
 
-        String[]Datos= busqueda();
+   /*     //String[]Datos= busqueda();
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(Admin_User);
                     abrir_inicio.lbl_rol.setText(txt_rol.getText());
@@ -494,17 +501,17 @@ public class Modificacion extends javax.swing.JFrame {
                         {
                                             photo= new ImageIcon("MEIA\\img\\"+Admin_User+".png");
                         }        
-Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_photo.getWidth(), abrir_inicio.lbl_photo.getHeight(), Image.SCALE_DEFAULT));
+                    Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_photo.getWidth(), abrir_inicio.lbl_photo.getHeight(), Image.SCALE_DEFAULT));
                     abrir_inicio.lbl_photo.setIcon(img);
                     abrir_inicio.show();
-                    this.setVisible(false); 
+                    this.setVisible(false); */
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
       public String[] busqueda(String Path,String Name_User)
     {
         
             Number_Line=0;
-            String Data[]= new String[9];
+            String Data[]= new String[10];
             File file_Use = new File(Path);
        try
        {
@@ -520,11 +527,11 @@ Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_pho
                 Lector.close();
                if(Datos!=null)
                 {
-                Data[0] = String.format("%-20s", Datos[0].trim());        
-               Data[1] = String.format("%-30s", Datos[1].trim());
-                Data[2] = String.format("%-30s", Datos[2].trim());
-                Data[3] = String.format("%-40s", Datos[3].trim());
-                Data[4] = String.format("%-3s", Datos[4].trim());
+                Data[0] = Datos[0].trim();        
+                Data[1] = Datos[1].trim();
+                Data[2] = Datos[2].trim();
+                Data[3] = Datos[3].trim();
+                Data[4] = Datos[4].trim();
                if( Data[4].equals("1"))
                 {
                     Data[4]="Administrador";
@@ -533,11 +540,11 @@ Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_pho
                 {
                   Data[4]="Usuario";
                 }
-                Data[5] = String.format("%-16s", Datos[5].trim());
-                Data[6] = String.format("%-40s", Datos[6].trim());
-                Data[7] = String.format("%-9s", Datos[7].trim());
-                Data[8] = String.format("%-200s", Datos[8].trim());
-                String f_estatus = String.format("%-7s", Datos[9].trim()); 
+                Data[5] = Datos[5].trim();
+                Data[6] = Datos[6].trim();
+                Data[7] = Datos[7].trim();
+                Data[8] = Datos[8].trim();
+                String f_estatus = Datos[9].trim(); 
                if( f_estatus.equals("1"))
                 {
                     Data[4]="Vigente";
@@ -547,12 +554,12 @@ Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_pho
                   Data[4]="No Vigente";
                 }
                 }
+               return Data;
        }
        catch(Exception ex)
                {
                 return new String[9];
                }
-                return new String[9];
     }
     
     
