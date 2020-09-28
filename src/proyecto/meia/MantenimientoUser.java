@@ -264,7 +264,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
                     this.setVisible(false); }
          else{
             JOptionPane.showMessageDialog(rootPane, "DEBE INGREASAR UN NOMBRE","Error", WIDTH);            
-         }
+          }
          // TODO add your handling code here:
     }//GEN-LAST:event_btn_BuscarUserActionPerformed
 
