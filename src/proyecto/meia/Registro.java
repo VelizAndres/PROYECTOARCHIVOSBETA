@@ -340,7 +340,9 @@ public class Registro extends javax.swing.JFrame {
                      //sumarle +1 la cantidad de valores activos
                      //actualziar usuario de modificacion
                      //actualizar hora de modificacion
-                     ActualizarDescriptorBitacora(usuario);
+                     
+                     
+                     //ActualizarDescriptorBitacora(usuario);
                      
                      //////////////////////////////////////////////////////////////////////////////////////////////////
                      
@@ -370,6 +372,10 @@ public class Registro extends javax.swing.JFrame {
                     ImageIcon photo = new ImageIcon(ImagenGuardada);
                     Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_photo.getWidth(), abrir_inicio.lbl_photo.getHeight(), Image.SCALE_DEFAULT));
                     abrir_inicio.lbl_photo.setIcon(img);
+                    
+                    ImageIcon logo = new ImageIcon("MEIA\\logo.jpg");
+                    Icon img2 = new ImageIcon(logo.getImage().getScaledInstance(abrir_inicio.lbl_photo.getWidth(), abrir_inicio.lbl_photo.getHeight(), Image.SCALE_DEFAULT));
+                    abrir_inicio.lbl_logo.setIcon(img2);
                     
                     abrir_inicio.show();
                     this.setVisible(false);                   
