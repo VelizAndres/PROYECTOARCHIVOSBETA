@@ -15,7 +15,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import static java.lang.Integer.parseInt;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static java.nio.file.StandardCopyOption.*;
@@ -347,8 +349,8 @@ public class Registro extends javax.swing.JFrame {
                     String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();
                     
                     
-                    int registros_bitacora = ObtenerDato(path_desc_bitacora, 7);                     
-                    int max_reorganizacion = ObtenerDato(path_desc_bitacora, 9);
+                    int registros_bitacora = ObtenerDato(path_desc_bitacora,"registros_activos","Error");                     
+                    int max_reorganizacion = ObtenerDato(path_desc_bitacora,"max_reorganizacion","Error");
                     
                     if(registros_bitacora == max_reorganizacion)
                     {
@@ -507,24 +509,73 @@ public class Registro extends javax.swing.JFrame {
         }       
     }
     
-    int ObtenerDato(String path, int posicion){
-        int activos =0 ;
-        try
+    int ObtenerDato(String path, String campo, String strError){
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
         {
-            //longitud de linea 42 contando \r\n
-            RandomAccessFile archivo = new RandomAccessFile(path, "rw");
-            int inicio =((posicion-1)*40)+4;
-            archivo.seek(inicio);
-            byte[] test = new byte[42];           
-            archivo.read(test, 0, test.length);
-            String linea = new String(test);
-            String[] dato = linea.split(":");
-            activos = Integer.valueOf(dato[1].trim());
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split(":");
+                            String campo_ar = split[0];
+                            if(campo_ar.equals(campo)) return Integer.parseInt(split[1].trim());
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }
         }
-        catch(Exception ex){
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return 0;
+    }
+    
+    
+    public void ActualizarDescriptorBackup(String usuario)
+    {
+        try{
+            File file_descriptorUser = new File("MEIA\\desc_bitacora_usuario.txt");
+            Date now = new Date();
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion:" + now.toString());
+            lines.set(4, "usuario_modificacion:" + usuario);
+            String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]) + 1;
+            lines.set(5, "#_registros:" + entries);
+            //lines.set(6, "registros_activos:" + NumeroDeActivos);
+            //lines.set(7, "registros_inactivos:" + NumeroDeInactivos);
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            LineChanger.close(); 
             
-        }      
-        return activos;
+        }catch(IOException ex){}
     }
     
     
