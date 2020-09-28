@@ -547,11 +547,11 @@ public class Modificacion extends javax.swing.JFrame {
                 String f_estatus = Datos[9].trim(); 
                if( f_estatus.equals("1"))
                 {
-                    Data[4]="Vigente";
+                    Data[9]="Vigente";
                 }
                 else
                 {
-                  Data[4]="No Vigente";
+                  Data[9]="No Vigente";
                 }
                 }
                return Data;
