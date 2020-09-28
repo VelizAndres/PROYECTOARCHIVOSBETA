@@ -27,6 +27,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import static proyecto.meia.Registro.txt_usuario;
 
 
 
@@ -63,7 +64,7 @@ public class Modificacion extends javax.swing.JFrame {
         txt_correo.setText(Data[6]);
         txt_telefono.setText(Data[7]);
         txt_estatus.setText(Data[9]);
-         btn_Delete.setVisible(Admin);
+        btn_Delete.setVisible(Admin);
     }
 
     /**
@@ -480,6 +481,23 @@ public class Modificacion extends javax.swing.JFrame {
         }
         else
         { JOptionPane.showMessageDialog(rootPane, "NO SE HA ENCONTRADO!!!","Error", WIDTH);}
+
+        String[]Datos= busqueda();
+                    Inicio abrir_inicio = new Inicio();
+                    abrir_inicio.lbl_usuario.setText(Admin_User);
+                    abrir_inicio.lbl_rol.setText(txt_rol.getText());
+                     ImageIcon photo = null;
+                try{
+                                           photo= new ImageIcon("MEIA\\img\\"+Admin_User+".jpg");
+                    }                    
+                catch(Exception ex)
+                        {
+                                            photo= new ImageIcon("MEIA\\img\\"+Admin_User+".png");
+                        }        
+Icon img = new ImageIcon(photo.getImage().getScaledInstance(abrir_inicio.lbl_photo.getWidth(), abrir_inicio.lbl_photo.getHeight(), Image.SCALE_DEFAULT));
+                    abrir_inicio.lbl_photo.setIcon(img);
+                    abrir_inicio.show();
+                    this.setVisible(false); 
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
       public String[] busqueda(String Path,String Name_User)

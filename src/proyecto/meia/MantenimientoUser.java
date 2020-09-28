@@ -28,6 +28,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
 
     int Number_Line;
     boolean Rol;
+    
     /**
      * Creates new form MantenimientoUser
      */
@@ -35,7 +36,9 @@ public class MantenimientoUser extends javax.swing.JFrame {
         initComponents();
         txt_Usuario.setVisible(true);
         btn_Eliminar.setVisible(Rol);
-        }
+        btn_BuscarUser.setVisible(Rol);
+        txt_BuscarUser.setVisible(Rol);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,9 +50,10 @@ public class MantenimientoUser extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_Eliminar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_BuscarUser = new javax.swing.JButton();
         txt_Usuario = new javax.swing.JTextField();
         btn_InforUser = new javax.swing.JButton();
+        txt_BuscarUser = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,13 +64,14 @@ public class MantenimientoUser extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Buscar Usuario");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_BuscarUser.setText("Buscar Usuario");
+        btn_BuscarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_BuscarUserActionPerformed(evt);
             }
         });
 
+        txt_Usuario.setEditable(false);
         txt_Usuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         btn_InforUser.setText("Información Usuario");
@@ -76,36 +81,40 @@ public class MantenimientoUser extends javax.swing.JFrame {
             }
         });
 
+        txt_BuscarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(108, 108, 108)
-                            .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton4)
-                            .addGap(18, 18, 18)
-                            .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_BuscarUser)
+                            .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_InforUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(btn_Eliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_InforUser)
-                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(301, Short.MAX_VALUE))
+                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_InforUser))
+                .addGap(18, 18, 18)
+                .addComponent(btn_Eliminar)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_BuscarUser)
+                    .addComponent(txt_BuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,9 +244,14 @@ public class MantenimientoUser extends javax.swing.JFrame {
     }
     
     
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btn_BuscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarUserActionPerformed
+                      Modificacion abrir_mod = new Modificacion();
+                     abrir_mod.Name_User=txt_BuscarUser.getText();
+                     abrir_mod.Admin=Rol;
+                     abrir_mod.show();
+                    this.setVisible(false); 
+            // TODO add your handling code here:
+    }//GEN-LAST:event_btn_BuscarUserActionPerformed
 
     private void btn_InforUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforUserActionPerformed
                      Modificacion abrir_mod = new Modificacion();
@@ -345,9 +359,10 @@ public class MantenimientoUser extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_BuscarUser;
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_InforUser;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTextField txt_BuscarUser;
     private javax.swing.JTextField txt_Usuario;
     // End of variables declaration//GEN-END:variables
 }
