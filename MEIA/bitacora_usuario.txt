@@ -1,2 +1,5 @@
 usuario             |nombre                        |apellido                      |password                                |rol|fecha_nacimiento|correo_alterno                          |telefono |path                                                                                                                                                                                                    |estatus
+<<<<<<< HEAD
 Andres              |Andres                        |Veliz                         |9f75e37f5892e344ffc4ed071dabae4d        |0  |21-09-2020      |asdfa@gasmic.com                        |31838332 |C:\Users\Diego Veliz\Desktop\Cas\Proyecto---MEIA\MEIA\img\Andres.png                                                                                                                                    |0      
+=======
+>>>>>>> 5f89883e25421644c31a93326e40b38794b15b7e

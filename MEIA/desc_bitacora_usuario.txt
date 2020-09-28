@@ -1,7 +1,9 @@
-usuario            |nombre                        |apellido                      |password                                |rol|fecha_nacimiento|correo_alterno                          |telefono |path                                                                                                                                                                                                    |estatus
-josedeleon         |José                          |De León                       |password123                             |1  |09/09/2000      |jose.dlj15@gmail.com                    |41091654 |C:\Users\José De León\Pictures\testmeia.jpg                                                                                                                                                             |1      
-josedeleon1        |José                          |De León                       |password123                             |1  |09/09/2000      |jose.dlj15@gmail.com                    |41091654 |C:\Users\José De León\Pictures\testmeia.jpg                                                                                                                                                             |1      
-josedeleon2        |José                          |De León                       |password123                             |1  |09/09/2000      |jose.dlj15@gmail.com                    |41091654 |C:\Users\José De León\Pictures\testmeia.jpg                                                                                                                                                             |1      
-josedeleon3        |José                          |De León                       |password123                             |1  |09/09/2000      |jose.dlj15@gmail.com                    |41091654 |C:\Users\José De León\Pictures\testmeia.jpg                                                                                                                                                             |1      
-josedeleon4        |José                          |De León                       |password123                             |1  |09/09/2000      |jose.dlj15@gmail.com                    |41091654 |C:\Users\José De León\Pictures\testmeia.jpg                                                                                                                                                             |1      
-
+nombre_simbolico:bitacora_usuario
+fecha_creacion:Mon Sep 28 03:23:14 CST 2020            
+usuario_creacion:josedeleon                       
+fecha_modificacion:Mon Sep 28 03:23:14 CST 2020
+usuario_modificacion:                    
+#_registros:    
+registros_activos:3
+registros_inactivos:   
+max_reorganizacion:3
