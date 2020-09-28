@@ -340,6 +340,7 @@ public class Registro extends javax.swing.JFrame {
                      //sumarle +1 la cantidad de valores activos
                      //actualziar usuario de modificacion
                      //actualizar hora de modificacion
+                     ActualizarDescriptorBitacora(usuario);
                      
                      //////////////////////////////////////////////////////////////////////////////////////////////////
                      
@@ -549,7 +550,7 @@ public class Registro extends javax.swing.JFrame {
     }
     
     
-    public void ActualizarDescriptorBackup(String usuario)
+    public void ActualizarDescriptorBitacora(String usuario)
     {
         try{
             File file_descriptorUser = new File("MEIA\\desc_bitacora_usuario.txt");
@@ -560,7 +561,8 @@ public class Registro extends javax.swing.JFrame {
             String[] arrOfStr = lines.get(5).split(":"); 
             int entries = parseInt(arrOfStr[1]) + 1;
             lines.set(5, "#_registros:" + entries);
-            //lines.set(6, "registros_activos:" + NumeroDeActivos);
+            int entries2 = ObtenerDato("MEIA\\desc_bitacora_usuario.txt","registros_activos","Error"); 
+            lines.set(6, "registros_activos:" + entries2);
             //lines.set(7, "registros_inactivos:" + NumeroDeInactivos);
             FileWriter Changer = new FileWriter(file_descriptorUser, false);
             BufferedWriter LineChanger = new BufferedWriter(Changer);

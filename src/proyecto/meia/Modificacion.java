@@ -279,7 +279,7 @@ public class Modificacion extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(lbl_password, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -482,7 +482,7 @@ public class Modificacion extends javax.swing.JFrame {
         else
         { JOptionPane.showMessageDialog(rootPane, "NO SE HA ENCONTRADO!!!","Error", WIDTH);}
 
-        String[]Datos= busqueda();
+        //String[]Datos= busqueda();
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(Admin_User);
                     abrir_inicio.lbl_rol.setText(txt_rol.getText());
