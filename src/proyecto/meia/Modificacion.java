@@ -489,11 +489,7 @@ public class Modificacion extends javax.swing.JFrame {
         else
         { JOptionPane.showMessageDialog(rootPane, "NO SE HA ENCONTRADO!!!","Error", WIDTH);}
 
-<<<<<<< HEAD
-   /*     //String[]Datos= busqueda();
-=======
-        //String[]Datos= busqueda();
->>>>>>> 5f89883e25421644c31a93326e40b38794b15b7e
+        /*String[]Datos= busqueda();
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(Admin_User);
                     abrir_inicio.lbl_rol.setText(txt_rol.getText());

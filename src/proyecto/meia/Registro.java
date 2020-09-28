@@ -350,14 +350,10 @@ public class Registro extends javax.swing.JFrame {
                     String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();
                     
                     
-<<<<<<< HEAD
-                    int registros_bitacora = ObtenerDato(path_desc_bitacora, 7);                     
-                    int max_reorganizacion = 3;
-=======
+
                     int registros_bitacora = ObtenerDato(path_desc_bitacora,"registros_activos","Error");                     
                     int max_reorganizacion = ObtenerDato(path_desc_bitacora,"max_reorganizacion","Error");
->>>>>>> 5f89883e25421644c31a93326e40b38794b15b7e
-                    
+
                     if(registros_bitacora == max_reorganizacion)
                     {
                         //REORGANIZAR SI ES NECESARIO
