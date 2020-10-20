@@ -104,7 +104,6 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel11.setText("Estatus");
 
-        txt_usuario.setEditable(false);
         txt_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usuarioActionPerformed(evt);
@@ -117,11 +116,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        txt_rol.setEditable(false);
-
         txt_fotografia.setEditable(false);
-
-        txt_estatus.setEditable(false);
 
         btn_enviar.setText("GUARDAR");
         btn_enviar.setEnabled(false);
@@ -349,9 +344,7 @@ public class Registro extends javax.swing.JFrame {
                      
                     //VERIFICAR REORGANIZACION
                     File file_desc_bitacora = new File("MEIA\\desc_bitacora_usuario.txt");
-                    String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();
-                    
-                    
+                    String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();                                  
 
                     int registros_bitacora = ObtenerDato(path_desc_bitacora,"registros_activos","Error");                     
                     int max_reorganizacion = ObtenerDato(path_desc_bitacora,"max_reorganizacion","Error");
@@ -652,7 +645,7 @@ public class Registro extends javax.swing.JFrame {
         }
         catch(Exception ex)
         {
-            
+            JOptionPane.showMessageDialog(rootPane, "ERROR !!!","Error", WIDTH);
         }      
     }
     

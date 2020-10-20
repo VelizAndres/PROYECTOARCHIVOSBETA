@@ -1,4 +1,4 @@
-nombre_simbolico:bitacora_usuario
+nombre_simbolico:bitacora_contactos
 fecha_creacion:Mon Sep 28 03:23:14 CST 2020            
 usuario_creacion:josedeleon                       
 fecha_modificacion:Mon Sep 28 07:12:24 CST 2020

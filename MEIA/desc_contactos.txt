@@ -1,0 +1,9 @@
+nombre_simbolico:                        
+fecha_creacion:                          
+usuario_creacion:                        
+fecha_modificacion:                      
+usuario_modificacion:                    
+#_registros:                             
+registros_activos:                       
+registros_inactivos:                     
+max_reorganizacion:                      
