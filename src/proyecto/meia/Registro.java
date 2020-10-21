@@ -330,19 +330,18 @@ public class Registro extends javax.swing.JFrame {
                 
                 boolean Guardado = LlenarArchivo(registro, path_bitacora);
                 
-                if(Guardado){                           
-                     //ACTUALIZAR DESCRIPTOR desc_bitacora_usuario
-                     //String[] test = LeerDescriptor("MEIA\\desc_bitacora_usuario.txt","Error");
-                     //sumarle +1 la cantidad de valores activos
-                     //actualziar usuario de modificacion
-                     //actualizar hora de modificacion
+                if(Guardado){       
+                    
+                     //ACTUALIZAR DESCRIPTORES
                      
+                     //desc_bitacora_usuario
+                     System.gc();
+                     ActualizarDescriptorBitacora(usuario);  
                      
-                     //ActualizarDescriptorBitacora(usuario);
+                     //desc_usuario
                      
                      //////////////////////////////////////////////////////////////////////////////////////////////////
-                     
-                     
+              
                     //VERIFICAR REORGANIZACION
                     File file_desc_bitacora = new File("MEIA\\desc_bitacora_usuario.txt");
                     String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();                                  
@@ -563,22 +562,26 @@ public class Registro extends javax.swing.JFrame {
     public void ActualizarDescriptorBitacora(String usuario)
     {
         try{
+            System.gc();
             File file_descriptorUser = new File("MEIA\\desc_bitacora_usuario.txt");
-            Date now = new Date();
+            
+            Date date = new Date();
+
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
             ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
-            lines.set(3, "fecha_modificacion:" + now.toString());
-            lines.set(4, "usuario_modificacion:" + usuario);
-            String[] arrOfStr = lines.get(5).split(":"); 
-            int obt=0;
-            if(!(arrOfStr[1].trim().equals("")))
-            {
-              obt=parseInt(arrOfStr[1]);  
-            }
-            int entries = obt + 1;
-            lines.set(5, "#_registros:" + entries);
-            int entries2 = ObtenerDato("MEIA\\desc_bitacora_usuario.txt","registros_activos","Error"); 
-            lines.set(6, "registros_activos:" + entries2);
-            //lines.set(7, "registros_inactivos:" + NumeroDeInactivos);
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            
+            String[] total_records = lines.get(5).split(":");
+            int total = Integer.parseInt(total_records[1].trim())+1;
+            lines.set(5, "#_registros: " + total);
+            
+            String[] active_records = lines.get(6).split(":");
+            int actives = Integer.parseInt(active_records[1].trim())+1;
+            lines.set(6, "registros_activos: " + actives);
+            
             FileWriter Changer = new FileWriter(file_descriptorUser, false);
             BufferedWriter LineChanger = new BufferedWriter(Changer);
             for (int i = 0; i < lines.size(); i++)
@@ -590,9 +593,13 @@ public class Registro extends javax.swing.JFrame {
                 }
             }
             LineChanger.close();
-            LineChanger.close(); 
-            
-        }catch(IOException ex){}
+            Changer.close();
+            System.gc();       
+        }
+        catch(IOException ex){
+        
+        }
+        System.gc();
     }
     
     

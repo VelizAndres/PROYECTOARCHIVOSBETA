@@ -1,9 +1,8 @@
-nombre_simbolico:                        
-fecha_creacion:                          
-usuario_creacion:                        
-fecha_modificacion:                      
-usuario_modificacion:                    
-#_registros:                             
-registros_activos:                       
-registros_inactivos:                     
-max_reorganizacion:                      
+nombre_simbolico: bitacora_usuario
+fecha_creacion: 20/10/2020 21:17:53
+usuario_creacion: josedeleon
+fecha_modificacion: 20/10/2020 21:17:53
+usuario_modificacion: HHH
+#_registros: 4
+registros_activos: 4
+registros_inactivos: 0
