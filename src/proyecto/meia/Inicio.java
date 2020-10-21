@@ -308,6 +308,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_MantenimiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MantenimiActionPerformed
                       MantenimientoUser abrir_mante = new MantenimientoUser();
+                      abrir_mante.setLocationRelativeTo(null);
                       String user=lbl_usuario.getText();
                       abrir_mante.GetUsuario(user.trim());
                       user =lbl_rol.getText().trim();
@@ -319,6 +320,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Contactos contactos = new Contactos();
+        contactos.setLocationRelativeTo(null);
         contactos.show();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

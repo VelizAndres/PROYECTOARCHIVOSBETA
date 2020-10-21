@@ -256,6 +256,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
     private void btn_BuscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarUserActionPerformed
          if(!(txt_BuscarUser.getText().equals(""))){
                     Modificacion abrir_mod = new Modificacion();
+                    abrir_mod.setLocationRelativeTo(null);
                     abrir_mod.Name_User=txt_BuscarUser.getText();
                     abrir_mod.Admin_User= txt_Usuario.getText();
                     abrir_mod.Admin=Rol;
@@ -270,6 +271,7 @@ public class MantenimientoUser extends javax.swing.JFrame {
 
     private void btn_InforUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforUserActionPerformed
                      Modificacion abrir_mod = new Modificacion();
+                     abrir_mod.setLocationRelativeTo(null);
                      abrir_mod.Name_User=txt_Usuario.getText();
                      abrir_mod.Creador(txt_Usuario.getText());
                      abrir_mod.show();

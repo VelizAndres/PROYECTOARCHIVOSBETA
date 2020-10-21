@@ -138,6 +138,7 @@ public class Login extends javax.swing.JFrame {
                 {
                     System.gc(); 
                     Inicio abrir_inicio = new Inicio();
+                    abrir_inicio.setLocationRelativeTo(null);
                     abrir_inicio.lbl_usuario.setText(registro_bitacora[0]);
                     String rol = "Usuario";
                     if(registro_bitacora[4].trim().equals("1")) rol = "Administrador";
@@ -169,6 +170,7 @@ public class Login extends javax.swing.JFrame {
                 {
                     System.gc(); 
                     Inicio abrir_inicio = new Inicio();
+                    abrir_inicio.setLocationRelativeTo(null);
                     abrir_inicio.lbl_usuario.setText(registro_usuario[0]);
                     String rol = "Usuario";
                     if(registro_usuario[4].trim().equals("1")) rol = "Administrador";
@@ -192,6 +194,7 @@ public class Login extends javax.swing.JFrame {
             if(confirmacion == 0){
             System.gc(); 
             Registro registrar_admin = new Registro();
+            registrar_admin.setLocationRelativeTo(null);
             registrar_admin.show();
             registrar_admin.txt_usuario.setText(usuario);
             registrar_admin.txt_rol.setText("Administrador");
@@ -210,6 +213,7 @@ public class Login extends javax.swing.JFrame {
                     {
                      System.gc(); 
                      Registro registrar_admin = new Registro();
+                     registrar_admin.setLocationRelativeTo(null);
                     registrar_admin.show();
                     registrar_admin.txt_usuario.setText(usuario);
                     registrar_admin.txt_rol.setText("Usuario");

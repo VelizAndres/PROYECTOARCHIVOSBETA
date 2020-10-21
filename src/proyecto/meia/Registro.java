@@ -363,6 +363,7 @@ public class Registro extends javax.swing.JFrame {
              
                     JOptionPane.showMessageDialog(rootPane, "GUARDADO EXITOSAMENTE!!!","MEIA", WIDTH);
                     Inicio abrir_inicio = new Inicio();
+                    abrir_inicio.setLocationRelativeTo(null);
                     abrir_inicio.lbl_usuario.setText(txt_usuario.getText());
                     abrir_inicio.lbl_rol.setText(txt_rol.getText());
                     

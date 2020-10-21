@@ -17,6 +17,7 @@ public class ProyectoMEIA {
     public static void main(String[] args) {
         // TODO code application logic here
         Login Inicio = new Login();
+        Inicio.setLocationRelativeTo(null);
         Inicio.show();
     }
     
