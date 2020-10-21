@@ -5,8 +5,15 @@
  */
 package proyecto.meia;
 
+import static java.awt.image.ImageObserver.WIDTH;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
+import static proyecto.meia.Registro.txt_usuario;
 
 /**
  *
@@ -99,6 +106,11 @@ public class NuevaLista extends javax.swing.JFrame {
         jLabel8.setText("Estatus");
 
         ingresarButton.setText("Ingresar");
+        ingresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,6 +207,59 @@ public class NuevaLista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estatus_txtActionPerformed
 
+    private void ingresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarButtonActionPerformed
+        if(nombre_txt.getText().equals("") || descripcion_txt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos","Error", WIDTH);
+        }
+        //Valida que no sea mas largo el valor del campo
+        if(nombre_txt.getText().length()>30 || descripcion_txt.getText().length()>40){
+            JOptionPane.showMessageDialog(rootPane, "Se superó el tamaño máximo para algún campo","Error", WIDTH);
+        }
+        else
+        {
+            String[] registro = new String[6];
+            registro[0]= nombre_txt.getText();
+            registro[1]= usuario_txt.getText();
+            registro[2]= descripcion_txt.getText();
+            registro[3]= usuarios_txt.getText();
+            registro[4]= fecha_txt.getText();
+            registro[5]= estatus_txt.getText();
+            String path_bitacora = "MEIA\\bitacora_lista.txt";
+        }
+    }//GEN-LAST:event_ingresarButtonActionPerformed
+
+    public boolean LlenarArchivo(String[] registro, String path)
+    {
+        File file_bitacora = new File(path);    
+        //NORMALIZAR ENTRADAS
+        String f_nombre = String.format("%-30s", registro[0]);        
+        String f_usuario = String.format("%-20s", registro[1]);
+        String f_descripcion = String.format("%-40s", registro[2]);
+        String f_usuarios = String.format("%-5s", registro[3]);
+        String f_fecha = String.format("%-16s", registro[4]);
+        String f_estatus = String.format("%-3s", registro[5]); 
+         
+        String registrofinal = f_nombre+"|"+f_usuario+"|"+f_descripcion+"|"+f_usuarios+"|"+f_fecha+"|"+f_estatus;
+        
+        try
+        {
+                FileWriter Escribir = new FileWriter(file_bitacora,true);
+                BufferedWriter bw = new BufferedWriter(Escribir);
+                bw.write(registrofinal+ System.getProperty( "line.separator" ));
+                bw.close();
+                Escribir.close();       
+                System.gc();
+                return true;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }       
+    }
+    
+    
+    
     public void InitializeData(String User)
     {
         usuario_txt.setText(User);
