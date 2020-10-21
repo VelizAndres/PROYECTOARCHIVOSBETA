@@ -337,9 +337,6 @@ public class Registro extends javax.swing.JFrame {
                      //desc_bitacora_usuario
                      System.gc();
                      ActualizarDescriptorBitacora(usuario);  
-                     
-                     //desc_usuario
-                     
                      //////////////////////////////////////////////////////////////////////////////////////////////////
               
                     //VERIFICAR REORGANIZACION
@@ -356,6 +353,12 @@ public class Registro extends javax.swing.JFrame {
                         File file_usuario = new File("MEIA\\usuario.txt");
                         String path_usuario = file_usuario.getAbsolutePath();
                         Reorganizar(path_usuario, path_bitacora);
+                        
+                        //ACTUALIZAR DESCRIPTOR DESPUES DE REORGANIZARSE
+                        System.gc();
+                        ActualizarDescriptorBitacora_Despues(usuario); 
+                        ActualizarDescriptorMaster_Despues(usuario);  
+                        //////////////////////////////////////////////////////////////////////////////////////////////////
                     }
              
                     JOptionPane.showMessageDialog(rootPane, "GUARDADO EXITOSAMENTE!!!","MEIA", WIDTH);
@@ -779,48 +782,86 @@ public class Registro extends javax.swing.JFrame {
          return    false; 
     }
     
-
     
-    String[] LeerDescriptor(String path, String strError){
-        ArrayList<String> valores = new ArrayList<String>();
-        File Archivo = new File(path);
-        if(Archivo.exists()==true)
-        {
-            FileReader LecturaArchivo;
-            try {
-                LecturaArchivo = new FileReader(Archivo);
-                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
-                String Linea="";
-                try {
-                    Linea = LeerArchivo.readLine();
-                    String[] split;
-                    while(Linea != null)
-                    {
-                        if(!"".equals(Linea))
-                        {
-                            split = Linea.split(":");
-                            valores.add(split[1].trim());
-                        }
-                        Linea = LeerArchivo.readLine();
-                    }
+    public void ActualizarDescriptorBitacora_Despues(String usuario)
+    {
+        try{
+            System.gc();
+            File file_descriptorUser = new File("MEIA\\desc_bitacora_usuario.txt");
+            
+            Date date = new Date();
 
-                    LecturaArchivo.close();
-                    LeerArchivo.close();              
-                } catch (IOException ex) {
-                    strError= ex.getMessage();
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            lines.set(5, "#_registros: " + 0);
+            lines.set(6, "registros_activos: " + 0);
+            lines.set(7, "registros_inactivos: " + 0);
+            
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
                 }
-            } catch (FileNotFoundException ex) {
-                strError = ex.getMessage();
-            }            
+            }
+            LineChanger.close();
+            Changer.close();
+            System.gc();       
         }
-        else
-        {
-            strError="No existe el archivo";
+        catch(IOException ex){
+        
         }
-        String[] result = new String[valores.size()];
-        result = valores.toArray(result);
-        return result;  
+        System.gc();
     }
+    
+    public void ActualizarDescriptorMaster_Despues(String usuario)
+    {
+        try{
+            System.gc();
+            File file_descriptorUser = new File("MEIA\\desc_usuario.txt");
+            
+            Date date = new Date();
+
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            
+            int actives = ObtenerLlavesActivas("MEIA\\usuario.txt","Error").length;
+            lines.set(5, "#_registros: " + actives);
+            lines.set(6, "registros_activos: " + actives);
+            lines.set(7, "registros_inactivos: " + 0);
+            
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            Changer.close();
+            System.gc();       
+        }
+        catch(IOException ex){
+        
+        }
+        System.gc();
+    }
+    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_enviar;
