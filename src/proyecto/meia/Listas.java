@@ -76,6 +76,11 @@ public class Listas extends javax.swing.JFrame {
         });
 
         jButton1.setText("Ingreso de nueva lista de distribución");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Resultados");
 
@@ -182,6 +187,13 @@ public class Listas extends javax.swing.JFrame {
     private void cb_lista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_lista2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_lista2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        NuevaLista NL = new NuevaLista();
+        NL.setLocationRelativeTo(null);
+        NL.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
