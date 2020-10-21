@@ -52,6 +52,7 @@ public class Inicio extends javax.swing.JFrame {
         btn_Mantenimi = new javax.swing.JButton();
         lbl_logo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        listsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -94,6 +95,13 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        listsButton.setText("Listas de distribución");
+        listsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +120,8 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(btn_Mantenimi, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(backupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(listsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jLabel1)
@@ -123,7 +132,7 @@ public class Inicio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,7 +146,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(backupButton)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(listsButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(14, 14, 14)
@@ -325,6 +336,13 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void listsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listsButtonActionPerformed
+        Listas listas = new Listas();
+        listas.setLocationRelativeTo(null);
+        listas.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_listsButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,5 +391,6 @@ public class Inicio extends javax.swing.JFrame {
     public static javax.swing.JLabel lbl_photo;
     public static javax.swing.JLabel lbl_rol;
     public static javax.swing.JLabel lbl_usuario;
+    private javax.swing.JButton listsButton;
     // End of variables declaration//GEN-END:variables
 }
