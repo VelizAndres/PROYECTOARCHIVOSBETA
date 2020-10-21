@@ -41,6 +41,7 @@ public class Listas extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        lbl_usuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +95,9 @@ public class Listas extends javax.swing.JFrame {
 
         jButton5.setText("Mantenimiento de lista-usuario");
 
+        lbl_usuario.setFont(new java.awt.Font("Century Gothic", 3, 12)); // NOI18N
+        lbl_usuario.setText("Usuario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,13 +136,19 @@ public class Listas extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cb_lista1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_usuario)
+                .addGap(373, 373, 373))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_usuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
@@ -188,8 +198,14 @@ public class Listas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_lista2ActionPerformed
 
+    public void GetUsuario(String User)
+    {
+        lbl_usuario.setText (User);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NuevaLista NL = new NuevaLista();
+        NL.InitializeData(lbl_usuario.getText());
         NL.setLocationRelativeTo(null);
         NL.show();
         this.setVisible(false);
@@ -244,6 +260,7 @@ public class Listas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lbl_usuario;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

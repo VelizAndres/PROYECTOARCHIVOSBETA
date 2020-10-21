@@ -5,6 +5,9 @@
  */
 package proyecto.meia;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author Javier Morales
@@ -192,6 +195,20 @@ public class NuevaLista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estatus_txtActionPerformed
 
+    public void InitializeData(String User)
+    {
+        usuario_txt.setText(User);
+        usuario_txt.setEditable(false);
+        estatus_txt.setText("1");
+        estatus_txt.setEditable(false);
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        fecha_txt.setText(date.format(formatter));
+        fecha_txt.setEditable(false);
+        usuarios_txt.setText("0");
+        usuarios_txt.setEditable(false);
+    }
+    
     /**
      * @param args the command line arguments
      */

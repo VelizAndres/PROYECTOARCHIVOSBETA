@@ -338,6 +338,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void listsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listsButtonActionPerformed
         Listas listas = new Listas();
+        String user=lbl_usuario.getText();
+        listas.GetUsuario(user.trim());
         listas.setLocationRelativeTo(null);
         listas.show();
         this.setVisible(false);
