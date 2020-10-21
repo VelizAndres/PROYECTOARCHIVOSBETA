@@ -131,10 +131,12 @@ public class Login extends javax.swing.JFrame {
         File file_bitacora = new File("MEIA\\bitacora_usuario.txt");
         String path_bitacora = file_bitacora.getAbsolutePath();
         String[] registro_bitacora = ObtenerUser(usuario, path_bitacora, "Error");
+        System.gc(); 
         
         if(registro_bitacora != null){
             if(ValidarCredenciales(password, registro_bitacora[3].trim()) && !registro_bitacora[9].equals("0"))
                 {
+                    System.gc(); 
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(registro_bitacora[0]);
                     String rol = "Usuario";
@@ -160,10 +162,12 @@ public class Login extends javax.swing.JFrame {
         File file_usuario = new File("MEIA\\usuario.txt");
         String path_usuario = file_usuario.getAbsolutePath();
         String[] registro_usuario = ObtenerUser(usuario, path_usuario, "Error");
+        System.gc(); 
         
         if(registro_usuario != null){
             if(ValidarCredenciales(password, registro_usuario[3].trim())&& !registro_usuario[9].equals("0"))
                 {
+                    System.gc(); 
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(registro_usuario[0]);
                     String rol = "Usuario";
@@ -186,7 +190,8 @@ public class Login extends javax.swing.JFrame {
         if(EstaVacio(path_bitacora, "Error") && EstaVacio(path_usuario, "Error")){
             int confirmacion = JOptionPane.showConfirmDialog(null, "<html>El usuario no existe<p>¿Desea crearlo?<html>");
             if(confirmacion == 0){
-                Registro registrar_admin = new Registro();
+            System.gc(); 
+            Registro registrar_admin = new Registro();
             registrar_admin.show();
             registrar_admin.txt_usuario.setText(usuario);
             registrar_admin.txt_rol.setText("Administrador");
@@ -203,6 +208,7 @@ public class Login extends javax.swing.JFrame {
                 {
                     if(registro_usuario == null && registro_bitacora == null)
                     {
+                     System.gc(); 
                      Registro registrar_admin = new Registro();
                     registrar_admin.show();
                     registrar_admin.txt_usuario.setText(usuario);

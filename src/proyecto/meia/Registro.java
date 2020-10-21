@@ -286,6 +286,7 @@ public class Registro extends javax.swing.JFrame {
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
         // TODO add your handling code here:
         //Valida que no esten vacios los campos
+        System.gc();  
         if(txt_nombre.getText().equals("") || txt_apellido.getText().equals("") || txt_fecha_nacimiento.getText().equals("")||txt_telefono.getText().equals("")||txt_usuario.getText().equals("")||txt_fotografia.getText().equals("")||txt_correo.getText().equals(""))
         {
             JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos","Error", WIDTH);
@@ -352,12 +353,13 @@ public class Registro extends javax.swing.JFrame {
                     if(registros_bitacora == max_reorganizacion)
                     {
                         //REORGANIZAR SI ES NECESARIO
+                        System.gc();
                         File file_usuario = new File("MEIA\\usuario.txt");
                         String path_usuario = file_usuario.getAbsolutePath();
                         Reorganizar(path_usuario, path_bitacora);
                     }
              
-                    JOptionPane.showMessageDialog(rootPane, "GUARDADO EXITOSAMENTE!!!","Error", WIDTH);
+                    JOptionPane.showMessageDialog(rootPane, "GUARDADO EXITOSAMENTE!!!","MEIA", WIDTH);
                     Inicio abrir_inicio = new Inicio();
                     abrir_inicio.lbl_usuario.setText(txt_usuario.getText());
                     abrir_inicio.lbl_rol.setText(txt_rol.getText());
@@ -407,6 +409,7 @@ public class Registro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                System.gc();
                 new Registro().setVisible(true);
             }
         });
@@ -501,7 +504,8 @@ public class Registro extends javax.swing.JFrame {
                 BufferedWriter bw = new BufferedWriter(Escribir);
                 bw.write(registro+ System.getProperty( "line.separator" ));
                 bw.close();
-                Escribir.close();             
+                Escribir.close();       
+                System.gc();
                 return true;
         }
         catch(Exception ex)
@@ -528,11 +532,16 @@ public class Registro extends javax.swing.JFrame {
                         {
                             split = Linea.split(":");
                             String campo_ar = split[0];
-                            if(campo_ar.equals(campo)) return Integer.parseInt(split[1].trim());
+                            if(campo_ar.equals(campo))
+                            {
+                                LecturaArchivo.close();
+                                LeerArchivo.close();
+                                System.gc();
+                                return Integer.parseInt(split[1].trim());
+                            }
                         }
                         Linea = LeerArchivo.readLine();
                     }
-
                     LecturaArchivo.close();
                     LeerArchivo.close();
                 } catch (IOException ex) {
@@ -546,6 +555,7 @@ public class Registro extends javax.swing.JFrame {
         {
             strError="No existe el archivo";
         }
+        System.gc();
         return 0;
     }
     
@@ -622,14 +632,19 @@ public class Registro extends javax.swing.JFrame {
             }          
             
             //delete bitacora y master
+           System.gc();
            
-            if(BorrarArchivos("MEIA\\bitacora_usuario.txt","MEIA\\usuario.txt")){
+           boolean deleted = BorrarArchivos("MEIA\\bitacora_usuario.txt","MEIA\\usuario.txt");
+            if(deleted){
                 System.gc();   
                 File antiguo = new File("MEIA\\temporal.txt");
                 File nuevo = new File("MEIA\\usuario.txt");
 
-                if(antiguo.renameTo(nuevo))
+                boolean renamed = antiguo.renameTo(nuevo);
+                System.gc();  
+                if(renamed)
                 {
+                System.gc();  
                 //create bitacora con encabezado
                 File file_bitacora_nuevo = new File("MEIA\\bitacora_usuario.txt");
                 FileWriter Escribir2 = new FileWriter(file_bitacora_nuevo,true);
@@ -689,6 +704,7 @@ public class Registro extends javax.swing.JFrame {
         }
         String[] result = new String[llaves.size()];
         result = llaves.toArray(result);
+        System.gc();
         return result;  
     }
     
@@ -710,7 +726,11 @@ public class Registro extends javax.swing.JFrame {
                         {
                             split = Linea.split("\\|");
                             String current_user = split[0];
-                            if(user.equals(current_user.trim())) return split;
+                            if(user.equals(current_user.trim()))
+                            {
+                            System.gc();
+                            return split;
+                            } 
                         }
                         Linea = LeerArchivo.readLine();
                     }
@@ -728,6 +748,7 @@ public class Registro extends javax.swing.JFrame {
         {
             strError="No existe el archivo";
         }
+        System.gc();
         return null;
     }
     
@@ -744,6 +765,8 @@ public class Registro extends javax.swing.JFrame {
          
          boolean delete1 = file_bitacora2.delete();   
          boolean delete2 = file_usuario2.delete();
+         
+         System.gc();
          if(delete1 && delete2) return true;
          
          return    false; 
