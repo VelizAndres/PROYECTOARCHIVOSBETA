@@ -1,0 +1,1 @@
+nombre_lista                  |usuario             |descripcion                             |numero_usuarios|fecha_creacion|estatus

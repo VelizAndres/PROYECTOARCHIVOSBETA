@@ -226,6 +226,13 @@ public class NuevaLista extends javax.swing.JFrame {
             registro[4]= fecha_txt.getText();
             registro[5]= estatus_txt.getText();
             String path_bitacora = "MEIA\\bitacora_lista.txt";
+            registro[0]= "nombre_lista";
+            registro[1]= "usuario";
+            registro[2]= "descripcion";
+            registro[3]= "numero_usuarios";
+            registro[4]= "fecha_creacion";
+            registro[5]= "estatus";
+            LlenarArchivo(registro, path_bitacora);
         }
     }//GEN-LAST:event_ingresarButtonActionPerformed
 
@@ -236,9 +243,9 @@ public class NuevaLista extends javax.swing.JFrame {
         String f_nombre = String.format("%-30s", registro[0]);        
         String f_usuario = String.format("%-20s", registro[1]);
         String f_descripcion = String.format("%-40s", registro[2]);
-        String f_usuarios = String.format("%-5s", registro[3]);
-        String f_fecha = String.format("%-16s", registro[4]);
-        String f_estatus = String.format("%-3s", registro[5]); 
+        String f_usuarios = String.format("%-15s", registro[3]);
+        String f_fecha = String.format("%-14s", registro[4]);
+        String f_estatus = String.format("%-7s", registro[5]); 
          
         String registrofinal = f_nombre+"|"+f_usuario+"|"+f_descripcion+"|"+f_usuarios+"|"+f_fecha+"|"+f_estatus;
         
