@@ -205,7 +205,7 @@ public class Listas extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NuevaLista NL = new NuevaLista();
-        NL.InitializeData(lbl_usuario.getText());
+        NL.lbl_usuario.setText(lbl_usuario.getText());
         NL.setLocationRelativeTo(null);
         NL.show();
         this.setVisible(false);

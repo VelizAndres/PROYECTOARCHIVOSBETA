@@ -1,1 +1,7 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
+TEST                |AAA                 |22/10/2020 16:07:22 |TEST                |1         
+TEST                |BBB                 |22/10/2020 16:07:22 |TEST                |1         
+TEST                |CCC                 |22/10/2020 16:07:22 |TEST                |1         
+Usuario             |AAA                 |22/10/2020 16:07:22 |Usuario             |1         
+Usuario             |BBB                 |22/10/2020 16:07:22 |Usuario             |1         
+Usuario             |CCC                 |22/10/2020 16:07:23 |Usuario             |1         

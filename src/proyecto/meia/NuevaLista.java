@@ -6,13 +6,25 @@
 package proyecto.meia;
 
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
+import static proyecto.meia.Contactos.lbl_usuario;
 import static proyecto.meia.Registro.txt_usuario;
 
 /**
@@ -42,14 +54,7 @@ public class NuevaLista extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         descripcion_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        usuarios_txt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        usuario_txt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        fecha_txt = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        estatus_txt = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lbl_usuario = new javax.swing.JLabel();
         ingresarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,37 +78,7 @@ public class NuevaLista extends javax.swing.JFrame {
 
         jLabel4.setText("Descripción");
 
-        usuarios_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarios_txtActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Número de usuarios");
-
-        usuario_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuario_txtActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Usuario");
-
-        fecha_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecha_txtActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Fecha de creación");
-
-        estatus_txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estatus_txtActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Estatus");
+        lbl_usuario.setText("Usuario");
 
         ingresarButton.setText("Ingresar");
         ingresarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -117,65 +92,42 @@ public class NuevaLista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(nombre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usuarios_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(fecha_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(estatus_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(lbl_usuario))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(212, 212, 212)
-                        .addComponent(ingresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(nombre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ingresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(148, 188, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_usuario)
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarios_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fecha_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descripcion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(estatus_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(nombre_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(ingresarButton)
                 .addGap(57, 57, 57))
         );
@@ -191,22 +143,6 @@ public class NuevaLista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_descripcion_txtActionPerformed
 
-    private void usuarios_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarios_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarios_txtActionPerformed
-
-    private void usuario_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuario_txtActionPerformed
-
-    private void fecha_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecha_txtActionPerformed
-
-    private void estatus_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estatus_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estatus_txtActionPerformed
-
     private void ingresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarButtonActionPerformed
         if(nombre_txt.getText().equals("") || descripcion_txt.getText().equals(""))
         {
@@ -220,19 +156,69 @@ public class NuevaLista extends javax.swing.JFrame {
         {
             String[] registro = new String[6];
             registro[0]= nombre_txt.getText();
-            registro[1]= usuario_txt.getText();
-            registro[2]= descripcion_txt.getText();
-            registro[3]= usuarios_txt.getText();
-            registro[4]= fecha_txt.getText();
-            registro[5]= estatus_txt.getText();
+            registro[1]= descripcion_txt.getText();
+            registro[2] = lbl_usuario.getText();
+            registro[3]="0";
+            
+            Date date = new Date();        
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            registro[4]= fecha;
+            registro[5]="1";
+            
+            //registro[2]= descripcion_txt.getText();
+           // registro[3]= usuarios_txt.getText();
+            //registro[4]= fecha_txt.getText();
+            //registro[5]= estatus_txt.getText();
+            
             String path_bitacora = "MEIA\\bitacora_lista.txt";
-            registro[0]= "nombre_lista";
-            registro[1]= "usuario";
-            registro[2]= "descripcion";
-            registro[3]= "numero_usuarios";
-            registro[4]= "fecha_creacion";
-            registro[5]= "estatus";
-            LlenarArchivo(registro, path_bitacora);
+//            registro[0]= "nombre_lista";
+//            registro[1]= "usuario";
+//            registro[2]= "descripcion";
+//            registro[3]= "numero_usuarios";
+//            registro[4]= "fecha_creacion";
+//            registro[5]= "estatus";
+
+            String key = registro[0].trim()+ registro[2].trim();
+
+            boolean existe_bitacora = ExisteLlave(key,"MEIA\\bitacora_lista.txt","Error");
+            boolean existe_master = ExisteLlave(key,"MEIA\\lista.txt","Error");
+
+            if(existe_bitacora || existe_master)
+            {
+                JOptionPane.showMessageDialog(null, "La lista ya existe","Error", WIDTH);
+            }
+            else
+            {           
+                boolean inserted = LlenarArchivo(registro, path_bitacora);
+                if(inserted)
+                {
+                    //ACTUALIZAR DESCRIPTOR
+                    ActualizarDescriptorBitacora(lbl_usuario.getText());
+                     ///
+
+                    ///VERIFICACION REORGANIZACION
+                     File file_desc_bitacora = new File("MEIA\\desc_bitacora_lista.txt");
+                        String path_desc_bitacora = file_desc_bitacora.getAbsolutePath();                                  
+
+                        int registros_bitacora = ObtenerDato(path_desc_bitacora,"registros_activos","Error");                     
+                        int max_reorganizacion = ObtenerDato(path_desc_bitacora,"max_reorganizacion","Error");
+
+                        if(registros_bitacora == max_reorganizacion)
+                        {
+                            //REORGANIZAR SI ES NECESARIO
+                            Reorganizar("MEIA\\lista.txt", "MEIA\\bitacora_lista.txt");
+                            ActualizarDescriptorBitacora_Despues(lbl_usuario.getText());
+                            ActualizarDescriptorMaster_Despues(lbl_usuario.getText());
+                        }
+                        JOptionPane.showMessageDialog(null, "Lista guardada existosamente!!!","Confirmación", WIDTH);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Error al guardar la lista","Error", WIDTH);
+                }                
+            }
         }
     }//GEN-LAST:event_ingresarButtonActionPerformed
 
@@ -240,12 +226,12 @@ public class NuevaLista extends javax.swing.JFrame {
     {
         File file_bitacora = new File(path);    
         //NORMALIZAR ENTRADAS
-        String f_nombre = String.format("%-30s", registro[0]);        
-        String f_usuario = String.format("%-20s", registro[1]);
-        String f_descripcion = String.format("%-40s", registro[2]);
-        String f_usuarios = String.format("%-15s", registro[3]);
-        String f_fecha = String.format("%-14s", registro[4]);
-        String f_estatus = String.format("%-7s", registro[5]); 
+        String f_nombre = String.format("%-30s", registro[0].trim());  
+        String f_descripcion = String.format("%-40s", registro[1].trim()); 
+        String f_usuario = String.format("%-20s", registro[2].trim());
+        String f_usuarios = String.format("%-15s", registro[3].trim());
+        String f_fecha = String.format("%-20s", registro[4].trim());
+        String f_estatus = String.format("%-7s", registro[5].trim()); 
          
         String registrofinal = f_nombre+"|"+f_usuario+"|"+f_descripcion+"|"+f_usuarios+"|"+f_fecha+"|"+f_estatus;
         
@@ -265,21 +251,52 @@ public class NuevaLista extends javax.swing.JFrame {
         }       
     }
     
-    
-    
-    public void InitializeData(String User)
-    {
-        usuario_txt.setText(User);
-        usuario_txt.setEditable(false);
-        estatus_txt.setText("1");
-        estatus_txt.setEditable(false);
-        LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        fecha_txt.setText(date.format(formatter));
-        fecha_txt.setEditable(false);
-        usuarios_txt.setText("0");
-        usuarios_txt.setEditable(false);
+    int ObtenerDato(String path, String campo, String strError){
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split(":");
+                            String campo_ar = split[0];
+                            if(campo_ar.equals(campo))
+                            {
+                                LecturaArchivo.close();
+                                LeerArchivo.close();
+                                System.gc();
+                                return Integer.parseInt(split[1].trim());
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        System.gc();
+        return 0;
     }
+    
     
     /**
      * @param args the command line arguments
@@ -316,20 +333,360 @@ public class NuevaLista extends javax.swing.JFrame {
         });
     }
 
+    void Reorganizar(String path_master, String path_bitacora){
+        String[] llaves_master = ObtenerLlavesActivas(path_master,"Error");
+        String[] llaves_bitacora = ObtenerLlavesActivas(path_bitacora,"Error");
+        String[] llaves_totales = new String[ llaves_master.length + llaves_bitacora.length ];
+        
+        System.arraycopy( llaves_master, 0, llaves_totales, 0, llaves_master.length );
+        System.arraycopy( llaves_bitacora, 0, llaves_totales, llaves_master.length, llaves_bitacora.length );
+        
+        //String[] llaves_totales = (String[])ArraysUtils.addAll(llaves_bitacora, llaves_master);
+         Arrays.sort(llaves_totales);
+        
+        //CREAR ARCHIVO TEMPORAL
+        File file_temporal = new File("MEIA\\temporal.txt");
+        
+        try
+        {
+            if (!file_temporal.exists())
+            {
+                file_temporal.createNewFile();
+            }
+            
+                FileWriter Escribir = new FileWriter(file_temporal,true);
+                BufferedWriter bw = new BufferedWriter(Escribir);
+                String encabezado = "nombre                        |usuario             |descripcion                             |numero_usuarios|fecha_creacion      |estatus";
+                bw.write(encabezado+ System.getProperty( "line.separator" ));
+                bw.close();
+                Escribir.close(); 
+                
+            for (int i = 0; i < llaves_totales.length; i++) {
+               String[] registro_valido = ObtenerRegistro(llaves_totales[i],"MEIA\\bitacora_lista.txt","Error");
+               if(registro_valido == null) registro_valido = ObtenerRegistro(llaves_totales[i],"MEIA\\lista.txt","Error");
+               
+               LlenarArchivo(registro_valido, "MEIA\\temporal.txt");    
+            }          
+            
+            //delete bitacora y master
+            System.gc();
+            
+           boolean deleted = BorrarArchivos("MEIA\\bitacora_lista.txt","MEIA\\lista.txt");
+            if(deleted){
+                System.gc();   
+                File antiguo = new File("MEIA\\temporal.txt");
+                File nuevo = new File("MEIA\\lista.txt");
+
+                boolean renamed = antiguo.renameTo(nuevo);
+                System.gc();
+                if(renamed)
+                {
+                System.gc();
+                //create bitacora con encabezado
+                File file_bitacora_nuevo = new File("MEIA\\bitacora_lista.txt");
+                FileWriter Escribir2 = new FileWriter(file_bitacora_nuevo,true);
+                BufferedWriter bw2 = new BufferedWriter(Escribir2);                
+                bw2.write(encabezado+ System.getProperty( "line.separator" ));
+                bw2.close();
+                bw2 = null;
+                Escribir.close(); 
+                Escribir = null;
+                }    
+            }           
+ 
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(rootPane, "ERROR !!!","Error", WIDTH);
+        }      
+    }
+    
+     boolean BorrarArchivos(String path1, String path2)
+    {
+        System.gc();
+         File file_bitacora = new File(path1);
+         String path_bi = file_bitacora.getAbsolutePath();     
+         File file_bitacora2 = new File(path_bi);      
+
+         File file_usuario = new File(path2);
+         String path_us = file_usuario.getAbsolutePath();     
+         File file_usuario2 = new File(path_us); 
+         
+         boolean delete1 = file_bitacora2.delete();   
+         boolean delete2 = file_usuario2.delete();
+         
+         System.gc();
+         if(delete1 && delete2) return true;
+         
+         return    false; 
+    }
+    
+    public String[] ObtenerRegistro(String key, String path, String strError){
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String key_file = split[0].trim()+split[1].trim();
+                            if(key.equals(key_file.trim()))
+                            {
+                                System.gc();
+                                return split;
+                            }
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        System.gc();
+        return null;
+    }
+    
+    public void ActualizarDescriptorBitacora(String usuario)
+    {
+        try{
+            System.gc();
+            File file_descriptorUser = new File("MEIA\\desc_bitacora_lista.txt");
+            
+            Date date = new Date();
+
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            
+            String[] total_records = lines.get(5).split(":");
+            int total = Integer.parseInt(total_records[1].trim())+1;
+            lines.set(5, "#_registros: " + total);
+            
+            String[] active_records = lines.get(6).split(":");
+            int actives = Integer.parseInt(active_records[1].trim())+1;
+            lines.set(6, "registros_activos: " + actives);
+            
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            Changer.close();
+            System.gc();       
+        }
+        catch(IOException ex){
+        
+        }
+        System.gc();
+    }
+    
+    public void ActualizarDescriptorBitacora_Despues(String usuario)
+    {
+        try{
+            System.gc();
+            File file_descriptorUser = new File("MEIA\\desc_bitacora_lista.txt");
+            
+            Date date = new Date();
+
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            lines.set(5, "#_registros: " + 0);
+            lines.set(6, "registros_activos: " + 0);
+            lines.set(7, "registros_inactivos: " + 0);
+            
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            Changer.close();
+            System.gc();       
+        }
+        catch(IOException ex){
+        
+        }
+        System.gc();
+    }
+    
+    public void ActualizarDescriptorMaster_Despues(String usuario)
+    {
+        try{
+            System.gc();
+            File file_descriptorUser = new File("MEIA\\desc_lista.txt");
+            
+            Date date = new Date();
+
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = hourdateFormat.format(date);
+        
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorUser.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion: " + fecha);
+            lines.set(4, "usuario_modificacion: " + usuario);
+            
+            int actives = ObtenerLlavesActivas("MEIA\\lista.txt","Error").length;
+            lines.set(5, "#_registros: " + actives);
+            lines.set(6, "registros_activos: " + actives);
+            lines.set(7, "registros_inactivos: " + 0);
+            
+            FileWriter Changer = new FileWriter(file_descriptorUser, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            Changer.close();
+            System.gc();       
+        }
+        catch(IOException ex){
+        
+        }
+        System.gc();
+    }
+    
+    String[] ObtenerLlavesActivas(String path, String strError){
+        ArrayList<String> llaves = new ArrayList<String>();
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5].trim();
+                            if(estatus.equals("1")){
+                                String key  = split[0].trim() + split[1].trim();
+                                 llaves.add(key);
+                            }
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError = ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        String[] result = new String[llaves.size()];
+        result = llaves.toArray(result);
+        System.gc();
+        return result;  
+    }
+    
+    public boolean ExisteLlave(String key, String path, String strError)
+    {
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5];
+                            
+                            String current_key = split[0].trim() + split[1].trim();
+                            if(key.equals(current_key) && estatus.trim().equals("1"))
+                            {
+                                LecturaArchivo.close();
+                                LeerArchivo.close();
+                                System.gc();
+                                return true;
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descripcion_txt;
-    private javax.swing.JTextField estatus_txt;
-    private javax.swing.JTextField fecha_txt;
     private javax.swing.JButton ingresarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    public static javax.swing.JLabel lbl_usuario;
     private javax.swing.JTextField nombre_txt;
-    private javax.swing.JTextField usuario_txt;
-    private javax.swing.JTextField usuarios_txt;
     // End of variables declaration//GEN-END:variables
 }

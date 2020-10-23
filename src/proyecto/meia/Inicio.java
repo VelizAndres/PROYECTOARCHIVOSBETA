@@ -333,6 +333,7 @@ public class Inicio extends javax.swing.JFrame {
         Contactos contactos = new Contactos();
         contactos.setLocationRelativeTo(null);
         contactos.show();
+        contactos.lbl_usuario.setText(lbl_usuario.getText());
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

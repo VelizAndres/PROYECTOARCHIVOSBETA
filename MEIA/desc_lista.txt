@@ -1,9 +1,8 @@
 nombre_simbolico: bitacora_lista
-fecha_creacion:
-usuario_creacion:
-fecha_modificacion:
-usuario_modificacion:
-#_registros:
-registros_activos:
-registros_inactivos:
-max_reorganizacion:
+fecha_creacion: 
+usuario_creacion: 
+fecha_modificacion: 
+usuario_modificacion: 
+#_registros: 0
+registros_activos: 0
+registros_inactivos: 0
