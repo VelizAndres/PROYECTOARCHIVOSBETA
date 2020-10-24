@@ -205,17 +205,24 @@ public class Contactos extends javax.swing.JFrame {
         
         if(!txt_usuario.getText().equals("")&& txt_nombre.getText().equals("") &&txt_apellido.getText().equals("")){                   
             String[] result1 = BuscarPorUsuario(txt_usuario.getText(),"MEIA\\bitacora_usuario.txt", "Error");
-            if(result1!=null && !result1[0].trim().equals(txt_usuario.getText())) cb_lista.addItem(NormalizarResultado(result1));
+            
+            // && !result1[0].trim().equals(txt_usuario.getText())
+            if(result1 != null)
+            {
+                String item = NormalizarResultado(result1);
+                cb_lista.addItem(item);
+            }
             String[] result2 = BuscarPorUsuario(txt_usuario.getText(),"MEIA\\usuario.txt", "Error");
             
-            String result = NormalizarResultado(result2);
-            String user = result2[0].trim();
-            String user_loged = lbl_usuario.getText();
-            if(result2!=null && !user.equals(user_loged))
-            {
-                cb_lista.addItem(result);
+            if(result2!=null){
+                String result = NormalizarResultado(result2);
+                String user = result2[0].trim();
+                String user_loged = lbl_usuario.getText();
+                if(!user.equals(user_loged))
+                {
+                    cb_lista.addItem(result);
+                } 
             } 
-            
             if(result1==null && result2==null){
                 JOptionPane.showMessageDialog(null, "No se encontró el usuario","Error", WIDTH);
             }
