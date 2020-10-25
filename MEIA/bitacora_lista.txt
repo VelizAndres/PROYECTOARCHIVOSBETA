@@ -1,1 +1,2 @@
 nombre                        |usuario             |descripcion                             |numero_usuarios|fecha_creacion      |estatus
+Universidad                   |Black               |Amigos de la U                          |0              |25/10/2020 11:25:04 |1      

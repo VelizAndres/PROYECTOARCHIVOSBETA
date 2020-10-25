@@ -86,6 +86,11 @@ public class Listas extends javax.swing.JFrame {
         jLabel5.setText("Resultados");
 
         jButton2.setText("Buscar lista de distribución");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificación de lista de distribución");
 
@@ -210,6 +215,10 @@ public class Listas extends javax.swing.JFrame {
         NL.show();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
