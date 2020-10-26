@@ -5,6 +5,14 @@
  */
 package proyecto.meia;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Javier Morales
@@ -33,7 +41,7 @@ public class Listas extends javax.swing.JFrame {
         cb_lista = new javax.swing.JComboBox<>();
         cb_lista1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        cb_lista2 = new javax.swing.JComboBox<>();
+        cb_listas = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -42,6 +50,7 @@ public class Listas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         lbl_usuario = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,9 +79,9 @@ public class Listas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel1.setText("LISTAS DE DISTRIBUCIÓN");
 
-        cb_lista2.addActionListener(new java.awt.event.ActionListener() {
+        cb_listas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_lista2ActionPerformed(evt);
+                cb_listasActionPerformed(evt);
             }
         });
 
@@ -101,7 +110,14 @@ public class Listas extends javax.swing.JFrame {
         jButton5.setText("Mantenimiento de lista-usuario");
 
         lbl_usuario.setFont(new java.awt.Font("Century Gothic", 3, 12)); // NOI18N
-        lbl_usuario.setText("Usuario");
+        lbl_usuario.setText("jamg1906");
+
+        jButton6.setText("Obtener todas las listas");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,8 +129,11 @@ public class Listas extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_lista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(76, 76, 76)
@@ -131,7 +150,7 @@ public class Listas extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(18, 18, 18)
-                            .addComponent(cb_lista2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cb_listas, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,10 +177,12 @@ public class Listas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addGap(51, 51, 51)
-                .addComponent(cb_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_lista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -171,7 +192,7 @@ public class Listas extends javax.swing.JFrame {
                             .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cb_lista2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_listas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -199,9 +220,9 @@ public class Listas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_lista1ActionPerformed
 
-    private void cb_lista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_lista2ActionPerformed
+    private void cb_listasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_listasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cb_lista2ActionPerformed
+    }//GEN-LAST:event_cb_listasActionPerformed
 
     public void GetUsuario(String User)
     {
@@ -217,9 +238,150 @@ public class Listas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        cb_listas.removeAllItems();
+        if(!txt_usuario.getText().equals(""))
+        {
+            BuscarListas(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de lista para poder realizar una búsqueda","Error", WIDTH);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        cb_lista.removeAllItems();
+        BuscarListas(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    public void BuscarListas(boolean all)
+    {
+        if (!all)
+        {
+                ArrayList<String> agregados = LlenarListasPorNombre("MEIA\\bitacora_lista.txt",lbl_usuario.getText(),txt_usuario.getText(),"Error");
+                for (int i = 0; i < agregados.size(); i++) {
+                    cb_listas.addItem(agregados.get(i));
+                }
+                ArrayList<String> agregados2 = LlenarListasPorNombre("MEIA\\lista.txt",lbl_usuario.getText(),txt_usuario.getText(),"Error");
+                for (int i = 0; i < agregados2.size(); i++) {
+                    cb_listas.addItem(agregados2.get(i));
+                }
+                if(agregados.isEmpty() && agregados2.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "No se encontraron registros asociados","Error", WIDTH);
+                }
+        }
+        else
+        {
+            ArrayList<String> agregados = LlenarListas("MEIA\\bitacora_lista.txt",lbl_usuario.getText(),"Error");
+                for (int i = 0; i < agregados.size(); i++) {
+                    cb_lista.addItem(agregados.get(i));
+                }
+                ArrayList<String> agregados2 = LlenarListas("MEIA\\lista.txt",lbl_usuario.getText(),"Error");
+                for (int i = 0; i < agregados2.size(); i++) {
+                    cb_lista.addItem(agregados2.get(i));
+                }
+                if(agregados.isEmpty() && agregados2.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "No se encontraron registros asociados","Error", WIDTH);
+                }
+        }
+    }
+    
+    public ArrayList<String> LlenarListasPorNombre(String path, String usuario, String nombreLista, String strError){
+        ArrayList<String> lista = new ArrayList<String>();
+                
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5];
+                            String list_name = split[0];
+                            String current_user = split[1].trim();
+                            if(usuario.trim().equals(current_user) && estatus.trim().equals("1") && list_name.trim().equals(nombreLista))
+                            {
+                                lista.add(Linea);
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();  
+                    System.gc();
+                } catch (IOException ex) {
+                    strError = ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return lista;
+    }
+    
+    public ArrayList<String> LlenarListas(String path, String usuario, String strError){
+        ArrayList<String> lista = new ArrayList<String>();
+                
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5];
+                            String current_user = split[1].trim();
+                            if(usuario.trim().equals(current_user) && estatus.trim().equals("1"))
+                            {
+                                lista.add(Linea);
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();  
+                    System.gc();
+                } catch (IOException ex) {
+                    strError = ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return lista;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -258,12 +420,13 @@ public class Listas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_lista;
     private javax.swing.JComboBox<String> cb_lista1;
-    private javax.swing.JComboBox<String> cb_lista2;
+    private javax.swing.JComboBox<String> cb_listas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
