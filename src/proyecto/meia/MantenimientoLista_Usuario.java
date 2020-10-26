@@ -5,12 +5,22 @@
  */
 package proyecto.meia;
 
+import com.sun.tools.javac.util.Convert;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import static java.lang.Integer.parseInt;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,6 +51,9 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
         btn_buscarListas = new javax.swing.JButton();
         lb_usuario_principal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnAgregar_Contacto = new javax.swing.JButton();
+        txt_descrip = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,9 +64,11 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
             }
         });
 
-        cb_contactos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cb_listas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_listas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_listasActionPerformed(evt);
+            }
+        });
 
         btn_buscarListas.setText("Buscar Listas");
         btn_buscarListas.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +81,15 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel1.setText("MENÚ MANTENIMIENTO");
+
+        btnAgregar_Contacto.setText("Agregar Contacto");
+        btnAgregar_Contacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar_ContactoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Descripción");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +111,16 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_buscarContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_buscarListas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_buscarListas, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnAgregar_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_descrip, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,7 +138,13 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_buscarListas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_listas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 116, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_descrip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAgregar_Contacto)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,6 +160,225 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
         BuscarListas();
     }//GEN-LAST:event_btn_buscarListasActionPerformed
 
+    private void btnAgregar_ContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ContactoActionPerformed
+        // TODO add your handling code here:
+        if(txt_descrip.getText().length()<=30)
+        {
+        String[] Claves= new String[3];
+        Claves[0]=cb_listas.getSelectedItem().toString(); 
+        Claves[1]=lb_usuario_principal.getText();
+        Claves[2]=cb_contactos.getSelectedItem().toString();
+        String strError="";
+            if(ExisteListaUsuario(Claves,"MEIA\\Lista_usuario.txt",strError))
+           {
+            String nombre_lista= String.format("%-30s",cb_listas.getSelectedItem());
+            String nombre_usuario= String.format("%-20s",lb_usuario_principal.getText());
+            String usuario_asociado= String.format("%-20s",cb_contactos.getSelectedItem());
+            Date date = new Date();
+            String descrip = String.format("%-30s", txt_descrip.getText());
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fecha = String.format("%-20s",hourdateFormat.format(date));
+            String f_estatus = String.format("%-10s", "1");
+            String registro = nombre_lista+"|"+ nombre_usuario+"|"+usuario_asociado+"|"+descrip+"|"+fecha+"|"+f_estatus;
+            Agregar_ListaUsario(registro);
+            File Archivo = new File("MEIA\\indice_Lista_usuario.txt");
+            int Cant=0;
+            try
+           {
+                FileReader LecturaArchivo = new FileReader(Archivo);  
+            BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+            BufferedReader bw = new BufferedReader(LecturaArchivo);
+           try{
+                String aux= bw.readLine();
+            while(aux!= "")
+                {
+                    Cant++;
+                }
+            bw.close();
+            LecturaArchivo.close();   
+            boolean menor=true;
+            int posicion=Line();
+            int anterior =0;
+            int siguiente=0;
+            RandomAccessFile archivo = new RandomAccessFile("MEIA\\indice_Lista_usuario.txt", "rw");
+         while(menor)
+         {
+            archivo.seek(posicion*134);
+            String text = archivo.readLine();
+            String[] contenedor = text.split("\\|");
+            int valor = Comparador(contenedor,Claves);
+            if(valor<0)
+            {
+                posicion = parseInt(contenedor[2]);
+                anterior = parseInt(contenedor[0]);
+                if(posicion==0)
+                {
+                   menor=false;
+                }
+            }
+            else
+            {
+                posicion=0;
+                siguiente = parseInt(contenedor[0]);
+                menor=false;
+            }
+            }
+            if(posicion==0)
+            {
+                
+            }
+            
+         
+            String registro_Indice = String.format("%-10s", Claves)+String.format("%-10s", "1."+Claves) +String.format("%-5s",siguiente )+ nombre_lista+nombre_usuario + usuario_asociado + fecha +f_estatus;
+            Agregar_Indice(registro_Indice);
+            File file_descriptorBackup = new File("MEIA\\desc_lista.txt");
+            if(!file_descriptorBackup.exists())
+            {
+                 CrearDescriptorMaestro(lb_usuario_principal.getText());
+            }
+            else
+                {
+                ActualizarDescriptorMaestro(lb_usuario_principal.getText());
+            }
+      
+           }
+           catch (IOException ex) {
+                    strError = ex.getMessage();
+                }
+           }
+            catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }  
+//            String registro_indice = 
+            }
+            
+       }
+       
+    }//GEN-LAST:event_btnAgregar_ContactoActionPerformed
+
+    private void cb_listasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_listasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_listasActionPerformed
+
+    public int Comparador(String[] contenedor,String Claves[])
+    {
+            String next = contenedor[2].trim();
+            int pos=contenedor[3].trim().compareTo(Claves[0]);
+            if(pos==0)
+            {
+                pos=contenedor[4].trim().compareTo(Claves[1]);
+                if(pos==0)
+                {
+                        pos=contenedor[5].trim().compareTo(Claves[2]);
+                        return pos;    
+                }
+                else{
+                    return pos;
+                }
+            }
+            else
+            {
+                return pos;
+            }
+    }
+    
+    public int Line() throws IOException 
+    {  
+            File file_descriptor = new File("MEIA\\desc_indice.txt");
+            Date now = new Date();
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptor.getAbsolutePath())));
+            String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]) + 1;
+            return entries;
+    }
+    
+    public boolean Agregar_ListaUsario(String registro)
+    {
+        try
+        {
+                FileWriter Escribir = new FileWriter("MEIA\\Lista_usuario.txt",true);
+                BufferedWriter bw = new BufferedWriter(Escribir);
+                bw.write(registro+ System.getProperty( "line.separator" ));
+                bw.close();
+                Escribir.close();       
+                System.gc();
+                
+                return true;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        } 
+    }
+    
+    public void Agregar_Indice(String registro)
+    {
+              try
+        {
+                FileWriter Escribir = new FileWriter("MEIA\\indice_Lista_usuario.txt",true);
+                BufferedWriter bw = new BufferedWriter(Escribir);
+                bw.write(registro+ System.getProperty( "line.separator" ));
+                bw.close();
+                Escribir.close();       
+                System.gc();
+                
+        }
+        catch(Exception ex)
+        {
+        } 
+    }
+    
+    
+     public boolean ExisteListaUsuario(String[] key, String path, String strError)
+    {
+        File Archivo = new File(path);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5];
+                            String nombre_lista= split[0].trim();
+                            String usuario= split[1].trim();
+                            String contacto= split[2].trim();
+                            boolean Exist = nombre_lista.equals(key[0]) && contacto.equals(key[2]) && usuario.equals(key[1]);
+                            if(Exist && estatus.trim().equals("1"))
+                            {
+                                LecturaArchivo.close();
+                                LeerArchivo.close();
+                                System.gc();
+                                return true;
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return false;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -156,8 +414,107 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
         });
     }
 
+    public void CrearDescriptorMaestro(String usuario)
+    {
+        try
+        {
+        File file_descriptor = new File("MEIA\\desc_lista.txt");
+        Date currentTime = new Date();
+        String[] lines = {"nombre_simbolico:desc_lista", "fecha_creacion:" + currentTime.toString(),"usuario_creacion:"+ usuario,"fecha_modificacion:" + currentTime.toString(),"usuario_modificacion:"+usuario,"#_registros:1"};
+        FileWriter LineWriter = new FileWriter(file_descriptor, true);
+        BufferedWriter LineWr = new BufferedWriter(LineWriter);
+        for (int i = 0; i < lines.length; i++)
+        {
+            LineWr.write(lines[i]);
+            if (i != lines.length - 1)
+            {
+            LineWr.newLine();
+            }
+        }
+        LineWr.close();
+        LineWriter.close();
+        } catch (IOException F) {}
+    }
     
+    public void ActualizarDescriptorMaestro(String usuario)
+    {
+        try{
+            File file_descriptor = new File("MEIA\\desc_lista.txt");
+            Date now = new Date();
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptor.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion:" + now.toString());
+            lines.set(4, "usuario_modificacion:" + usuario);
+            String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]) + 1;
+            lines.set(5, "#_registros:" + entries);
+            
+            FileWriter Changer = new FileWriter(file_descriptor, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            LineChanger.close(); 
+            
+        }catch(IOException ex){}
+    }
     
+       public void CrearDescriptorIndice(String usuario)
+       {
+        try
+        {
+        File file_descriptor = new File("MEIA\\desc_indice.txt");
+        Date currentTime = new Date();
+        String[] lines = {"nombre_simbolico:desc_indice", "fecha_creacion:" + currentTime.toString(),"usuario_creacion:"+ usuario,"fecha_modificacion:" + currentTime.toString(),"usuario_modificacion:"+usuario,"#_registros:1","registro_inicial:1"};
+        FileWriter LineWriter = new FileWriter(file_descriptor, true);
+        BufferedWriter LineWr = new BufferedWriter(LineWriter);
+        for (int i = 0; i < lines.length; i++)
+        {
+            LineWr.write(lines[i]);
+            if (i != lines.length - 1)
+            {
+            LineWr.newLine();
+            }
+        }
+        LineWr.close();
+        LineWriter.close();
+        } catch (IOException F) {}
+    }
+    
+       
+       
+    public void ActualizarDescriptorIndice(String usuario)
+    {
+        try{
+            File file_descriptor = new File("MEIA\\desc_indice.txt");
+            Date now = new Date();
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptor.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion:" + now.toString());
+            lines.set(4, "usuario_modificacion:" + usuario);
+            String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]) + 1;
+            lines.set(5, "#_registros:" + entries);
+            
+            FileWriter Changer = new FileWriter(file_descriptor, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            LineChanger.close(); 
+            
+        }catch(IOException ex){}
+    }
     
         public void BuscarContactos()
     {
@@ -290,11 +647,14 @@ public class MantenimientoLista_Usuario extends javax.swing.JFrame {
       
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar_Contacto;
     private javax.swing.JButton btn_buscarContactos;
     private javax.swing.JButton btn_buscarListas;
     private javax.swing.JComboBox<String> cb_contactos;
     private javax.swing.JComboBox<String> cb_listas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     public static javax.swing.JLabel lb_usuario_principal;
+    private javax.swing.JTextField txt_descrip;
     // End of variables declaration//GEN-END:variables
 }

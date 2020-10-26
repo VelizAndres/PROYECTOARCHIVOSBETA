@@ -1,0 +1,1 @@
+nombre lista                  |usuario             |usuario asociado    |descripción                             |fecha creación      |estatus   

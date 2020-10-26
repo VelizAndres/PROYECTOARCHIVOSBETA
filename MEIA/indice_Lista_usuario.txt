@@ -1,0 +1,1 @@
+registro  |posicion  |sigui|nombre lista                  |usuario             |usuario asociado    |fecha creación      |estatus   
