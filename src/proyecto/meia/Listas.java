@@ -102,6 +102,11 @@ public class Listas extends javax.swing.JFrame {
         });
 
         jButton3.setText("Modificación de lista de distribución");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar lista de distribución");
 
@@ -253,6 +258,28 @@ public class Listas extends javax.swing.JFrame {
         cb_lista.removeAllItems();
         BuscarListas(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try
+        {
+            String Seleccionada = cb_lista.getSelectedItem().toString();
+            String [] data = Seleccionada.split("\\|");
+            ModificacionListas ML = new ModificacionListas();
+            ML.setLocationRelativeTo(null);
+            ML.lbl_usuario.setText(lbl_usuario.getText());
+            ML.registroOriginal = ML.ObtenerRegistro("MEIA\\bitacora_lista.txt", lbl_usuario.getText(), data[0].trim(), "Error");
+            if(ML.registroOriginal == null)
+            {
+                ML.registroOriginal = ML.ObtenerRegistro("MEIA\\lista.txt", lbl_usuario.getText(), data[0].trim(), "Error");
+            }
+            ML.Fill(data[0].trim(), data[2].trim());
+            ML.show();
+        }
+        catch(Exception E)
+        {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una lista para modificar","Error", WIDTH);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public void BuscarListas(boolean all)
     {
