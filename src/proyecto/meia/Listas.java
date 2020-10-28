@@ -975,8 +975,8 @@ public class Listas extends javax.swing.JFrame {
         File file_bitacora = new File(path);    
         //NORMALIZAR ENTRADAS
         String f_nombre = String.format("%-30s", registro[0].trim());  
-        String f_descripcion = String.format("%-40s", registro[1].trim()); 
-        String f_usuario = String.format("%-20s", registro[2].trim());
+        String  f_usuario = String.format("%-40s", registro[1].trim()); 
+        String f_descripcion = String.format("%-20s", registro[2].trim());
         String f_usuarios = String.format("%-15s", registro[3].trim());
         String f_fecha = String.format("%-20s", registro[4].trim());
         String f_estatus = String.format("%-7s", registro[5].trim()); 
@@ -1092,7 +1092,7 @@ public class Listas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbl_nombre_lista;
-    private javax.swing.JLabel lbl_usuario;
+    public static javax.swing.JLabel lbl_usuario;
     private javax.swing.JLabel lbl_usuarios;
     private javax.swing.JTextField txt_descripcion;
     private javax.swing.JTextField txt_fecha;

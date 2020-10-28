@@ -1,1 +1,6 @@
-nombre lista                  |usuario             |usuario asociado    |descripción                             |fecha creación      |estatus   
+nombre lista                  |usuario             |usuario asociado    |descripción                   |fecha creación      |estatus   
+Amigos                        |Mario               |Black               |asd                           |28/10/2020 03:03:34 |1         
+Amigos                        |Mario               |Veliz               |2                             |28/10/2020 03:03:46 |1         
+Uni                           |Mario               |BBB                 |3                             |28/10/2020 03:03:54 |1         
+Amigos                        |Mario               |BBB                 |4                             |28/10/2020 03:39:00 |1         
+Uni                           |Mario               |AAA                 |6                             |28/10/2020 03:52:15 |1         

@@ -1,6 +1,10 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
-TEST                |AAA                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |BBB                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |CCC                 |31/12/2020 19:43:06 |Jose                |1         
-TEST                |XXX                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |YYY                 |23/10/2020 19:34:01 |TEST                |1         
+Black               |Veliz               |28/10/2020 01:26:08 |Black               |1         
+Mario               |AAA                 |28/10/2020 01:26:08 |Mario               |1         
+Mario               |BBB                 |28/10/2020 01:26:09 |Mario               |1         
+Mario               |Black               |28/10/2020 01:26:09 |Mario               |1         
+TEST                |AAA                 |28/10/2020 01:26:09 |TEST                |1         
+TEST                |BBB                 |28/10/2020 01:26:09 |TEST                |1         
+TEST                |CCC                 |28/10/2020 01:26:09 |TEST                |1         
+TEST                |XXX                 |28/10/2020 01:26:09 |TEST                |1         
+TEST                |YYY                 |28/10/2020 01:26:09 |TEST                |1         

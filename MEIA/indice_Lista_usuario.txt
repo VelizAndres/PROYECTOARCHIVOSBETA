@@ -1,1 +1,6 @@
-registro  |posicion  |sigui|nombre lista                  |usuario             |usuario asociado    |fecha creación      |estatus   
+registro  |posicion  |sigui|nombre_lista                  |usuario             |usuario_asociado    |fecha_creacion      |estatus   
+1         |1.1       |2    |Amigos                        |Mario               |Black               |28/10/2020 03:03:34 |1         
+2         |1.2       |5    |Amigos                        |Mario               |Veliz               |28/10/2020 03:03:46 |1         
+3         |1.3       |0    |Uni                           |Mario               |BBB                 |28/10/2020 03:03:54 |1         
+4         |1.4       |1    |Amigos                        |Mario               |BBB                 |28/10/2020 03:39:00 |1         
+5         |1.5       |3    |Uni                           |Mario               |AAA                 |28/10/2020 03:52:15 |1         
