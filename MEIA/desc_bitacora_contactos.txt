@@ -1,9 +1,9 @@
 nombre_simbolico: bitacora_contactos
-fecha_creacion: 20/10/2020 21:17:53
-usuario_creacion: josedeleon
-fecha_modificacion: 25/10/2020 11:23:30
-usuario_modificacion: Black               
-#_registros: 1
-registros_activos: 0
+fecha_creacion: 
+usuario_creacion: 
+fecha_modificacion: 26/10/2020 09:09:07
+usuario_modificacion: PRUEBA
+#_registros: 2
+registros_activos: 1
 registros_inactivos: 1
 max_reorganizacion: 3

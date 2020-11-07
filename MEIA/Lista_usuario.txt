@@ -1,1 +1,5 @@
-nombre lista                  |usuario             |usuario asociado    |descripción                             |fecha creación      |estatus   
+nombre_lista                  |usuario             |usuario asociado    |descripción                             |fecha creación      |estatus   
+U2                            |PRUEBA              |CCC                 |desc                                    |28/10/2020 10:24:50 |1         
+U1                            |PRUEBA              |BBB                 |desc                                    |28/10/2020 10:24:55 |1         
+U1                            |PRUEBA              |AAA                 |desc                                    |28/10/2020 10:25:49 |1         
+U1                            |PRUEBA              |DDD                 |desc                                    |28/10/2020 10:25:59 |1         

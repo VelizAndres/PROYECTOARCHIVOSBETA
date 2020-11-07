@@ -1,6 +1,5 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
-TEST                |AAA                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |BBB                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |CCC                 |31/12/2020 19:43:06 |Jose                |1         
-TEST                |XXX                 |23/10/2020 19:34:01 |TEST                |1         
-TEST                |YYY                 |23/10/2020 19:34:01 |TEST                |1         
+PRUEBA              |BBB                 |26/10/2020 09:07:59 |PRUEBA              |1         
+PRUEBA              |AAA                 |26/10/2020 09:05:54 |PRUEBA              |1         
+PRUEBA              |CCC                 |26/10/2020 09:07:51 |PRUEBA              |1         
+PRUEBA              |DDD                 |26/10/2020 09:07:59 |PRUEBA              |1         

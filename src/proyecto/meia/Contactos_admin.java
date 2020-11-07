@@ -352,7 +352,8 @@ public class Contactos_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
             int iRespuesta = JOptionPane.showConfirmDialog(null, "<html>¿Esta seguro que desea salir?<br> Se realizará una reorganización<html>", "¿Salir?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (iRespuesta == 0) 
-            {   Reorganizar("MEIA\\contactos.txt", "MEIA\\bitacora_contactos.txt");       
+            {   
+                Reorganizar("MEIA\\contactos.txt", "MEIA\\bitacora_contactos.txt");       
                 System.exit(0);
             } 
     }//GEN-LAST:event_btn_salirActionPerformed

@@ -1,2 +1,1 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
-Black               |Veliz               |25/10/2020 11:22:35 |Black               |1         

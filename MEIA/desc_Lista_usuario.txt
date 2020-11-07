@@ -1,0 +1,8 @@
+nombre_simbolico: Lista_usuario
+fecha_creacion: 
+usuario_creacion: 
+fecha_modificacion: 28/10/2020 10:30:45
+usuario_modificacion: PRUEBA              
+#_registros: 4
+registros_activos: 4
+registros_inactivos: 0

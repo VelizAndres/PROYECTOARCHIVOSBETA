@@ -392,7 +392,8 @@ public class Listas extends javax.swing.JFrame {
         // TODO add your handling code here:
         int iRespuesta = JOptionPane.showConfirmDialog(null, "<html>¿Esta seguro que desea salir?<br> Se realizará una reorganización<html>", "¿Salir?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (iRespuesta == 0) 
-            {   Reorganizar("MEIA\\lista.txt", "MEIA\\bitacora_lista.txt");       
+            {   
+                Reorganizar("MEIA\\lista.txt", "MEIA\\bitacora_lista.txt");       
                 System.exit(0);
             } 
     }//GEN-LAST:event_btn_salirActionPerformed
@@ -975,8 +976,8 @@ public class Listas extends javax.swing.JFrame {
         File file_bitacora = new File(path);    
         //NORMALIZAR ENTRADAS
         String f_nombre = String.format("%-30s", registro[0].trim());  
-        String f_descripcion = String.format("%-40s", registro[1].trim()); 
-        String f_usuario = String.format("%-20s", registro[2].trim());
+        String f_descripcion = String.format("%-40s", registro[2].trim()); 
+        String f_usuario = String.format("%-20s", registro[1].trim());
         String f_usuarios = String.format("%-15s", registro[3].trim());
         String f_fecha = String.format("%-20s", registro[4].trim());
         String f_estatus = String.format("%-7s", registro[5].trim()); 
