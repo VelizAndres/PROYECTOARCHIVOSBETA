@@ -1093,7 +1093,7 @@ public class Listas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbl_nombre_lista;
-    private javax.swing.JLabel lbl_usuario;
+    public static javax.swing.JLabel lbl_usuario;
     private javax.swing.JLabel lbl_usuarios;
     private javax.swing.JTextField txt_descripcion;
     private javax.swing.JTextField txt_fecha;

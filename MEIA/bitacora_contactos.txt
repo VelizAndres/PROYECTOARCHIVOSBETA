@@ -1,1 +1,6 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
+<<<<<<< HEAD
+=======
+Mario               |CCC                 |28/10/2020 01:26:16 |Mario               |1         
+Mario               |Veliz               |28/10/2020 01:26:52 |Mario               |1         
+>>>>>>> 4f8459eac3430bd92442e48507391c3f271ee3b3

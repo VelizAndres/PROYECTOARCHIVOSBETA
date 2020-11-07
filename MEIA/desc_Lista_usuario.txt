@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 nombre_simbolico: Lista_usuario
 fecha_creacion: 
 usuario_creacion: 
@@ -6,3 +7,11 @@ usuario_modificacion: PRUEBA
 #_registros: 4
 registros_activos: 4
 registros_inactivos: 0
+=======
+nombre_simbolico:desc_Lista_usuario
+fecha_creacion:Wed Oct 28 00:03:38 CST 2020
+usuario_creacion:Mario
+fecha_modificacion:Wed Oct 28 03:52:32 CST 2020
+usuario_modificacion:Mario
+#_registros:5
+>>>>>>> 4f8459eac3430bd92442e48507391c3f271ee3b3

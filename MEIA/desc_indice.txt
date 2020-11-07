@@ -1,0 +1,7 @@
+nombre_simbolico:desc_indice
+fecha_creacion:Tue Oct 27 23:33:13 CST 2020
+usuario_creacion:Mario
+fecha_modificacion:Wed Oct 28 03:52:32 CST 2020
+usuario_modificacion:Mario
+#_registros:5
+registro_inicial:4
