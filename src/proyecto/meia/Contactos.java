@@ -523,7 +523,7 @@ public class Contactos extends javax.swing.JFrame {
     
     public boolean LlenarArchivo(String usuario, String contacto, String path)
     {
-        File file_bitacora = new File(path);    
+        File file_bitacora = new File(path);   
         //NORMALIZAR ENTRADAS
 
         Date date = new Date();

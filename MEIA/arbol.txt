@@ -1,0 +1,1 @@
+No_registro    |Izq  |Der  |Usuario_emisor      |Usuario_receptor    |Fecha_transaccion   |Asunto              |Mensaje                                                                                             |Adjunto                  |Estatus   
