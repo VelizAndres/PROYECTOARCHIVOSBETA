@@ -53,6 +53,9 @@ public class Inicio extends javax.swing.JFrame {
         lbl_logo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btn_indizado = new javax.swing.JButton();
+        btn_bandeja_entrada = new javax.swing.JButton();
+        btn_bandeja_salida = new javax.swing.JButton();
+        btn_correo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -102,6 +105,27 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btn_bandeja_entrada.setText("BANDEJA DE ENTRADA");
+        btn_bandeja_entrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_bandeja_entradaActionPerformed(evt);
+            }
+        });
+
+        btn_bandeja_salida.setText("BANDEJA DE ENVIADOS");
+        btn_bandeja_salida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_bandeja_salidaActionPerformed(evt);
+            }
+        });
+
+        btn_correo.setText("ENVIAR CORREO");
+        btn_correo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_correoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,28 +133,36 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(197, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(lbl_usuario)
-                                .addComponent(jLabel2)
-                                .addComponent(lbl_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(77, 77, 77)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lbl_usuario)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lbl_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(77, 77, 77)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btn_Mantenimi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                                     .addComponent(backupButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                    .addComponent(btn_indizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(151, 151, 151))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(281, 281, 281)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_rol)
-                        .addGap(136, 136, 136))))
+                                    .addComponent(btn_indizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbl_logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(151, 151, 151))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(281, 281, 281)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbl_rol)
+                            .addGap(588, 588, 588)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btn_correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_bandeja_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_bandeja_salida, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(165, 165, 165))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,16 +182,22 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_rol)
-                            .addComponent(btn_indizado)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_indizado)
+                            .addComponent(lbl_rol)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Mantenimi)
                         .addGap(78, 78, 78)
                         .addComponent(jButton1)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_bandeja_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_bandeja_salida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -342,10 +380,37 @@ public class Inicio extends javax.swing.JFrame {
     private void btn_indizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_indizadoActionPerformed
         // TODO add your handling code here:
         Lista_Usuario nuevo = new Lista_Usuario();
-        nuevo.lbl_usuario.setText(lbl_usuario.getText());
+        nuevo.lbl_usuario.setText(lbl_usuario.getText().trim());
         nuevo.show();
         this.setVisible(false);
     }//GEN-LAST:event_btn_indizadoActionPerformed
+
+    private void btn_bandeja_entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bandeja_entradaActionPerformed
+        // TODO add your handling code here:
+        Bandeja_entrada bandeja_e = new Bandeja_entrada();
+        bandeja_e.setLocationRelativeTo(null);
+        bandeja_e.show();
+        bandeja_e.lbl_usuario.setText(lbl_usuario.getText().trim());
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_bandeja_entradaActionPerformed
+
+    private void btn_bandeja_salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bandeja_salidaActionPerformed
+        // TODO add your handling code here:
+        Bandeja_enviados bandeja_e = new Bandeja_enviados();
+        bandeja_e.setLocationRelativeTo(null);
+        bandeja_e.show();
+        bandeja_e.lbl_usuario.setText(lbl_usuario.getText().trim());
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_bandeja_salidaActionPerformed
+
+    private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
+        // TODO add your handling code here:
+        CorreoNuevo correo_nuevo = new CorreoNuevo();
+        correo_nuevo.setLocationRelativeTo(null);
+        correo_nuevo.show();
+        correo_nuevo.lbl_usuario.setText(lbl_usuario.getText().trim());
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_correoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,6 +452,9 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backupButton;
     public javax.swing.JButton btn_Mantenimi;
+    private javax.swing.JButton btn_bandeja_entrada;
+    private javax.swing.JButton btn_bandeja_salida;
+    private javax.swing.JButton btn_correo;
     private javax.swing.JButton btn_indizado;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
