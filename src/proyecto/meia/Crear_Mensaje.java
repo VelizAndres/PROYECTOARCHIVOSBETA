@@ -196,9 +196,9 @@ public class Crear_Mensaje extends javax.swing.JFrame {
             }
             
             ArbolBi Binario = new ArbolBi();
-            //Aqui se debe definir si es lista o contacto individual
+            Aqui se debe definir si es lista o contacto individual
         
-            //Esto es lo que debes usar 
+            Esto es lo que debes usar 
             String Usuario_receptor="";//Agregar javier
             String[] Registro= Formalizar_Correo(Usuario_receptor,ArchivoAdjunto);
             Binario.Insertar(Registro); 

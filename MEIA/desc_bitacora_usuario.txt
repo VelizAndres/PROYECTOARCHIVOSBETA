@@ -1,9 +1,9 @@
 nombre_simbolico: bitacora_usuario
 fecha_creacion: 20/10/2020 21:17:53
 usuario_creacion: josedeleon
-fecha_modificacion: 11/11/2020 23:10:13
-usuario_modificacion: aaaaaaaaaaaa
-#_registros: 1
-registros_activos: 1
+fecha_modificacion: 12/11/2020 23:44:33
+usuario_modificacion: Andres
+#_registros: 2
+registros_activos: 2
 registros_inactivos: 0
 max_reorganizacion: 3

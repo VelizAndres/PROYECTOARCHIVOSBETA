@@ -401,8 +401,8 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
                         {
                             split = Linea.split("\\|");
                             String estatus = split[5];
-                            
-                            if(estatus.trim().equals("1") && !lista.contains(split[0]))
+                            String user  = split[1];
+                            if(estatus.trim().equals("1") && !lista.contains(split[0]) && user.equals(usuario))
                             {
                                 lista.add(split[0]);
                             } 

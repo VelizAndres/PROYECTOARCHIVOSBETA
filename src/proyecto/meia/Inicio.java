@@ -404,7 +404,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_bandeja_salidaActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
         CorreoNuevo correo_nuevo = new CorreoNuevo();
         correo_nuevo.setLocationRelativeTo(null);
         correo_nuevo.show();
