@@ -5,13 +5,17 @@
  */
 package proyecto.meia;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -26,6 +30,79 @@ public class ArbolBi {
         Recorrido_Insercion(Registro,1);
     }
   
+    
+        
+     
+    public void Busqueda(String Clave, int tipo)
+    {
+        ArrayList<String> lista = new ArrayList<String>();
+        if(tipo==0)
+        {
+             lista = Buscar_registros(Clave,3,"");  
+        }
+        else
+        {
+             lista = Buscar_registros(Clave,4,"");  
+        }
+        for (int i = 0; i < lista.size(); i++) {
+      //      cb_listas.addItem(lista.get(i));
+        }
+    }
+     
+   
+    
+    
+     private ArrayList<String> Buscar_registros(String Clave, int posicion,String strError){
+        ArrayList<String> lista = new ArrayList<String>();
+        File Archivo = new File("MEIA\\arbol.txt");
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[9];
+                            String Usuario = split[posicion].trim();
+                            if(Clave.trim().equals(Usuario) && estatus.trim().equals("1"))
+                            {
+                                lista.add(split[1]);
+                            } 
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();  
+                    System.gc();
+                } catch (IOException ex) {
+                    strError = ex.getMessage();
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+        }
+        return lista;
+    }
+    
+    
+      
+    
+    
+    
+    
     
     private void Crear_Vregistro(String[] Datos)
     {
