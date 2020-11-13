@@ -1,0 +1,6 @@
+nombre_simbolico:bitacora_backup
+fecha_creacion:Fri Nov 13 14:12:59 CST 2020
+usuario_creacion:jamg2               
+fecha_modificacion:Fri Nov 13 14:12:59 CST 2020
+usuario_modificacion:jamg2               
+#_registros:1

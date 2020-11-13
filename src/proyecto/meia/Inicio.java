@@ -365,7 +365,7 @@ public class Inicio extends javax.swing.JFrame {
                       user =lbl_rol.getText().trim();
                     abrir_mante.MoodFact(user.equals("Administrador"));
                     abrir_mante.show();
-                    this.setVisible(false);       
+                    abrir_mante.setDefaultCloseOperation(DISPOSE_ON_CLOSE);   
     }//GEN-LAST:event_btn_MantenimiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -374,15 +374,16 @@ public class Inicio extends javax.swing.JFrame {
         contactos.setLocationRelativeTo(null);
         contactos.show();
         contactos.lbl_usuario.setText(lbl_usuario.getText());
-        this.setVisible(false);
+        contactos.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_indizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_indizadoActionPerformed
         // TODO add your handling code here:
         Lista_Usuario nuevo = new Lista_Usuario();
+        nuevo.setLocationRelativeTo(null);
         nuevo.lbl_usuario.setText(lbl_usuario.getText().trim());
         nuevo.show();
-        this.setVisible(false);
+        nuevo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btn_indizadoActionPerformed
 
     private void btn_bandeja_entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bandeja_entradaActionPerformed
@@ -391,7 +392,8 @@ public class Inicio extends javax.swing.JFrame {
         bandeja_e.setLocationRelativeTo(null);
         bandeja_e.show();
         bandeja_e.lbl_usuario.setText(lbl_usuario.getText().trim());
-        this.setVisible(false);
+        bandeja_e.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }//GEN-LAST:event_btn_bandeja_entradaActionPerformed
 
     private void btn_bandeja_salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bandeja_salidaActionPerformed
@@ -400,16 +402,16 @@ public class Inicio extends javax.swing.JFrame {
         bandeja_e.setLocationRelativeTo(null);
         bandeja_e.show();
         bandeja_e.lbl_usuario.setText(lbl_usuario.getText().trim());
-        this.setVisible(false);
+        bandeja_e.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btn_bandeja_salidaActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
 //         TODO add your handling code here:
-        CorreoNuevo correo_nuevo = new CorreoNuevo();
+        CorreoNuevo correo_nuevo = new CorreoNuevo() ;
         correo_nuevo.setLocationRelativeTo(null);
         correo_nuevo.show();
+        correo_nuevo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         correo_nuevo.lbl_usuario.setText(lbl_usuario.getText().trim());
-        this.setVisible(false);
     }//GEN-LAST:event_btn_correoActionPerformed
 
     /**
