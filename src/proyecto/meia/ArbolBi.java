@@ -49,9 +49,6 @@ public class ArbolBi {
         }
     }
      
-   
-    
-    
      private ArrayList<String> Buscar_registros(String Clave, int posicion,String strError){
         ArrayList<String> lista = new ArrayList<String>();
         File Archivo = new File("MEIA\\arbol.txt");
@@ -96,35 +93,6 @@ public class ArbolBi {
         }
         return lista;
     }
-    
-    
-      
-    
-    
-    
-    
-    
-    private void Crear_Vregistro(String[] Datos)
-    {
-        Date date = new Date();
-        //Caso 3: obtenerhora y fecha y salida por pantalla con formato:
-        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String fecha = hourdateFormat.format(date);
-        
-        String[] Nuevo_Registro = new String[10];
-        Nuevo_Registro[0] =String.format("%-15s", "");
-        Nuevo_Registro[1] =String.format("%-5s", "");
-        Nuevo_Registro[2] =String.format("%-5s", "");
-        Nuevo_Registro[3] =String.format("%-20s", "");
-        Nuevo_Registro[4] =String.format("%-20s", "");
-        Nuevo_Registro[5] =String.format("%-20s", "");
-        Nuevo_Registro[6] =String.format("%-20s", "");
-        Nuevo_Registro[7] =String.format("%-100s", "");
-        Nuevo_Registro[8] =String.format("%-25s", "");
-        Nuevo_Registro[9] =String.format("%-10s", "");
-    }
-    
-    
     
     
     private void Recorrido_Insercion(String[] Nuevo,int posicion)

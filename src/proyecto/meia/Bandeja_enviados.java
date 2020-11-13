@@ -43,7 +43,6 @@ public class Bandeja_enviados extends javax.swing.JFrame {
         lbl_usuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lst_correos = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
         BUSCAR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,8 +58,6 @@ public class Bandeja_enviados extends javax.swing.JFrame {
 
         lst_correos.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(lst_correos);
-
-        jButton1.setText("BUSCAR");
 
         BUSCAR.setText("BUSCAR");
         BUSCAR.addActionListener(new java.awt.event.ActionListener() {
@@ -91,11 +88,6 @@ public class Bandeja_enviados extends javax.swing.JFrame {
                                 .addComponent(BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,11 +103,6 @@ public class Bandeja_enviados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -231,7 +218,6 @@ public ArrayList<String> LlenarAdmin(String path, String usuario,String strError
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSCAR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

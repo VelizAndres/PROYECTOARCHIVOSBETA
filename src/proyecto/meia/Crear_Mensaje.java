@@ -9,6 +9,9 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.io.File;
 import java.nio.file.Files;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -39,11 +42,15 @@ public class Crear_Mensaje extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_adjunto = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        txt_mensaje = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_enviar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txt_asunto = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,15 +63,22 @@ public class Crear_Mensaje extends javax.swing.JFrame {
             }
         });
 
+        txt_adjunto.setEditable(false);
+        txt_adjunto.setEnabled(false);
         jScrollPane1.setViewportView(txt_adjunto);
 
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(txt_mensaje);
 
         jLabel1.setText("Mensaje:");
 
         jLabel2.setText("Destinatario");
 
         btn_enviar.setText("Enviar Mensaje");
+        btn_enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_enviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,54 +91,75 @@ public class Crear_Mensaje extends javax.swing.JFrame {
             .addGap(0, 133, Short.MAX_VALUE)
         );
 
+        jLabel3.setText("Asunto:");
+
+        jScrollPane3.setViewportView(txt_asunto);
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jLabel4.setText("MENSAJE NUEVO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lb_usuario)
-                                .addGap(182, 182, 182))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btn_Adjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel3))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane2)))
+                                    .addComponent(jLabel2))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(385, 385, 385)
-                        .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(lb_usuario)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lb_usuario)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addComponent(jLabel2)
-                        .addGap(63, 63, 63)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
                                 .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))
+                                .addGap(99, 99, 99))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +184,36 @@ public class Crear_Mensaje extends javax.swing.JFrame {
             txt_adjunto.setText(ruta);
         }
     }//GEN-LAST:event_btn_AdjuntoActionPerformed
+
+    private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
+      
+        if(txt_asunto.getText().length() <=20 &&txt_mensaje.getText().length()<=100)
+        {
+            String ArchivoAdjunto = txt_adjunto.getText();
+            if(!ArchivoAdjunto.equals(""))        
+            {
+               ArchivoAdjunto = GuardarImagen(txt_adjunto.getText());
+            }
+            
+            ArbolBi Binario = new ArbolBi();
+            //Aqui se debe definir si es lista o contacto individual
+        
+            //Esto es lo que debes usar 
+            String Usuario_receptor="";//Agregar javier
+            String[] Registro= Formalizar_Correo(Usuario_receptor,ArchivoAdjunto);
+            Binario.Insertar(Registro); 
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "No debe sobrepasar los campos","Error", ERROR);
+        }
+        
+        
+        
+        
+       
+        
+    }//GEN-LAST:event_btn_enviarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -187,7 +252,27 @@ public class Crear_Mensaje extends javax.swing.JFrame {
 
     
     
-    
+    public String[] Formalizar_Correo(String Contacto, String ArchivoAdjunto )
+    {
+        Date date = new Date();
+        //Caso 3: obtenerhora y fecha y salida por pantalla con formato:
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String fecha = hourdateFormat.format(date);
+      
+        String[] Nuevo_Registro = new String[10];
+        Nuevo_Registro[0] =String.format("%-15s", "");
+        Nuevo_Registro[1] =String.format("%-5s", "-1");
+        Nuevo_Registro[2] =String.format("%-5s", "-1");
+        Nuevo_Registro[3] =String.format("%-20s", lb_usuario);
+        Nuevo_Registro[4] =String.format("%-20s", Contacto);
+        Nuevo_Registro[5] =String.format("%-20s", fecha);
+        Nuevo_Registro[6] =String.format("%-20s", txt_asunto.getText());
+        Nuevo_Registro[7] =String.format("%-100s", txt_mensaje.getText());
+        Nuevo_Registro[8] =String.format("%-25s", ArchivoAdjunto);
+        Nuevo_Registro[9] =String.format("%-10s", "1");
+   
+        return Nuevo_Registro;
+    }
     
     
     
@@ -197,13 +282,11 @@ public class Crear_Mensaje extends javax.swing.JFrame {
     
     
        String GuardarImagen(String ruta){
-        
-        File origen = new File(ruta);
-            
-            String[] split = ruta.split("\\");
-            int posicion = ruta.lastIndexOf("");
-            String extension = ruta.substring(posicion);
-            String archivo_nuevo = "MEIA\\adjuntos\\"+ split[split.length-1];
+            File origen = new File(ruta);
+            String[] split = ruta.split("\\\\");
+            //int posicion = ruta.lastIndexOf("");
+            //String extension = ruta.substring(posicion);
+            String archivo_nuevo = "MEIA\\correo_db\\"+ split[split.length-1];
             
             File destino = new File(archivo_nuevo);
             String path_nuevo = destino.getAbsolutePath();
@@ -217,7 +300,7 @@ public class Crear_Mensaje extends javax.swing.JFrame {
             }
             catch(Exception ex)
             {
-                JOptionPane.showMessageDialog(rootPane, "Falló la copia de la imagen","Error", WIDTH);
+                JOptionPane.showMessageDialog(rootPane, "Falló al cargar el archivo","Error", WIDTH);
             }
             return null;
     }
@@ -235,11 +318,15 @@ public class Crear_Mensaje extends javax.swing.JFrame {
     private javax.swing.JButton btn_enviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     public static javax.swing.JLabel lb_usuario;
     private javax.swing.JTextPane txt_adjunto;
+    private javax.swing.JTextPane txt_asunto;
+    private javax.swing.JTextPane txt_mensaje;
     // End of variables declaration//GEN-END:variables
 }

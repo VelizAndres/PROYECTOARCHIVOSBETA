@@ -11,9 +11,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 
 
@@ -54,6 +61,9 @@ public class CorreoNuevo extends javax.swing.JFrame {
         btn_buscarlista = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cb_lista = new javax.swing.JComboBox<>();
+        btn_Adjunto = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_adjunto = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,41 +106,59 @@ public class CorreoNuevo extends javax.swing.JFrame {
 
         jLabel5.setText("PARA:");
 
+        btn_Adjunto.setText("Buscar Archivo");
+        btn_Adjunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AdjuntoActionPerformed(evt);
+            }
+        });
+
+        txt_adjunto.setEditable(false);
+        txt_adjunto.setEnabled(false);
+        jScrollPane2.setViewportView(txt_adjunto);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(163, 163, 163)
+                .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_Adjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(cb_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_buscarlista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(cb_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txt_asunto))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addGap(36, 36, 36)
+                                                .addComponent(cb_lista, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btn_buscarlista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(36, 36, 36)
+                                                .addComponent(cb_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txt_asunto))))))
                 .addGap(135, 135, 135))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,7 +195,10 @@ public class CorreoNuevo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Adjunto))
                 .addGap(48, 48, 48))
         );
 
@@ -191,13 +222,55 @@ public class CorreoNuevo extends javax.swing.JFrame {
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
             String lista = cb_lista.getSelectedItem().toString();
             String usuario = cb_usuarios.getSelectedItem().toString();
-            String asunto = txt_asunto.getText();
-            String mensaje = txt_mensaje.getText();
-            
-            //INSERTAR EN EL ARBOL
-            ///////////////////////////////////////////////////////////
+            ArbolBi Binario = new ArbolBi();
+ 
+            if(lista.equals("")&& usuario.equals(""))
+            {
+            JOptionPane.showMessageDialog(rootPane, "Debe añadir destinatario","Error", ERROR);
+            }
+            else
+            {
+            if(txt_asunto.getText().length() <=20 &&txt_mensaje.getText().length()<=100)
+             {
+                String ArchivoAdjunto = txt_adjunto.getText();
+                if(!ArchivoAdjunto.equals(""))        
+                {
+                   ArchivoAdjunto = GuardarImagen(txt_adjunto.getText());
+                }
+                if(!lista.equals(""))
+                {   
+                    ArrayList<String> Contactos_list = ObtenerContactosDeLista(lbl_usuario.getText(),lista);    
+                    for(String receptor : Contactos_list)
+                    {
+                        String[] Registro= Formalizar_Correo(receptor,ArchivoAdjunto);
+                        Binario.Insertar(Registro); 
+                    }
+                }
+                if(!usuario.equals(""))
+                {
+                    String[] Registro= Formalizar_Correo(usuario,ArchivoAdjunto);
+                    Binario.Insertar(Registro); 
+                }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "No debe sobrepasar los campos","Error", ERROR);
+                }   
+            }
         
     }//GEN-LAST:event_btn_enviarActionPerformed
+
+    private void btn_AdjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdjuntoActionPerformed
+        JFileChooser ventana = new JFileChooser();
+        File fichero;
+        String ruta;
+        int valor = ventana.showOpenDialog(this);
+        if(valor == JFileChooser.APPROVE_OPTION){
+            fichero = ventana.getSelectedFile();
+            ruta = fichero.getAbsolutePath();
+            txt_adjunto.setText(ruta);
+        }
+    }//GEN-LAST:event_btn_AdjuntoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,7 +426,111 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
         }
         return lista;
     }
+
+
+
+
+    public String[] Formalizar_Correo(String Contacto, String ArchivoAdjunto )
+    {
+        Date date = new Date();
+        //Caso 3: obtenerhora y fecha y salida por pantalla con formato:
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String fecha = hourdateFormat.format(date);
+      
+        String[] Nuevo_Registro = new String[10];
+        Nuevo_Registro[0] =String.format("%-15s", "");
+        Nuevo_Registro[1] =String.format("%-5s", "-1");
+        Nuevo_Registro[2] =String.format("%-5s", "-1");
+        Nuevo_Registro[3] =String.format("%-20s", lbl_usuario);
+        Nuevo_Registro[4] =String.format("%-20s", Contacto);
+        Nuevo_Registro[5] =String.format("%-20s", fecha);
+        Nuevo_Registro[6] =String.format("%-20s", txt_asunto.getText());
+        Nuevo_Registro[7] =String.format("%-100s", txt_mensaje.getText());
+        Nuevo_Registro[8] =String.format("%-25s", ArchivoAdjunto);
+        Nuevo_Registro[9] =String.format("%-10s", "1");
+   
+        return Nuevo_Registro;
+    }
+
+        String GuardarImagen(String ruta){
+            File origen = new File(ruta);
+            String[] split = ruta.split("\\\\");
+            //int posicion = ruta.lastIndexOf("");
+            //String extension = ruta.substring(posicion);
+            String archivo_nuevo = "MEIA\\correo_db\\"+ split[split.length-1];
+            
+            File destino = new File(archivo_nuevo);
+            String path_nuevo = destino.getAbsolutePath();
+            
+            File temporal = new File(path_nuevo);
+                      
+            try
+            {
+                Files.copy(origen.toPath(), temporal.toPath(),REPLACE_EXISTING);
+                return path_nuevo;
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(rootPane, "Falló al cargar el archivo","Error", WIDTH);
+            }
+            return null;
+    }
+  
+        
+        
+        ArrayList<String> ObtenerContactosDeLista(String Emisor, String NombreDeLista)
+    {
+        String path = "MEIA\\Lista_usuario.txt";
+        File Archivo = new File(path);
+        ArrayList<String> ContactosReceptores = new ArrayList<String>();
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea = LeerArchivo.readLine();
+                    String[] split;
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split = Linea.split("\\|");
+                            String estatus = split[5].trim();
+                            String nombre_lista= split[0].trim();
+                            String usuario= split[1].trim();
+                            String destinatario= split[2].trim();
+                            
+                            if (estatus.equals("1") && usuario.equals(Emisor) && nombre_lista.equals(NombreDeLista))
+                            {
+                                ContactosReceptores.add(destinatario);
+                            }
+                        }
+                        Linea = LeerArchivo.readLine();
+                    }
+                    LecturaArchivo.close();
+                    LeerArchivo.close();              
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Falló la obtención de los contactos de la lista seleccionada","Error", WIDTH);
+                }
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Falló la obtención de los contactos de la lista seleccionada","Error", WIDTH);
+            }            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Falló la obtención de los contactos de la lista seleccionada debido a que el archivo no existe","Error", WIDTH);
+        }
+        return ContactosReceptores;
+    }
+    
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Adjunto;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_buscarlista;
     private javax.swing.JButton btn_enviar;
@@ -365,7 +542,9 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JLabel lbl_usuario;
+    private javax.swing.JTextPane txt_adjunto;
     private javax.swing.JTextField txt_asunto;
     private javax.swing.JTextArea txt_mensaje;
     // End of variables declaration//GEN-END:variables
