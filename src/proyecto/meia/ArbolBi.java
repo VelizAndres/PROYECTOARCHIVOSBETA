@@ -13,6 +13,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import static java.lang.Integer.parseInt;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,11 +29,20 @@ public class ArbolBi {
   
     public void Insertar(String[] Registro)
     {
+        int Cant = Obt_Cant_Registro();
+        Registro[0]=String.format("%-15s", (Cant+1));
+        if(Cant==0)
+        {
+            Insertar_Registro(Registro);  
+            CrearDescriptorArbol(Registro[3].trim());
+        }
+        else
+        {
         //Proceso de insercion
-        Recorrido_Insercion(Registro,1);
+        Recorrido_Insercion(Registro,1);  
+        ActualizarDescriptorArbol(Registro[3].trim());
+        }
     }
-  
-    
         
      
     public void Busqueda(String Clave, int tipo)
@@ -193,6 +205,85 @@ public class ArbolBi {
             return pos;
         }
     }
+  
+     
+     
+     private int Obt_Cant_Registro()
+     {
+         try{
+            File file_descriptorArbol = new File("MEIA\\desc_arbol.txt");
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorArbol.getAbsolutePath())));
+         if(lines.isEmpty())
+         {
+             return 0;
+         }
+    else
+         {
+         String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]);
+          return entries; 
+         }
+        }
+         catch(IOException ex)
+        {
+        return 0;
+        }
+     }    
+     
+     
+    private void CrearDescriptorArbol(String usuario)
+    {
+        try
+        {
+        File file_descriptorArbol = new File("MEIA\\desc_arbol.txt");
+        Date currentTime = new Date();
+        String[] lines = {"nombre_simbolico:desc_arbol", "fecha_creacion:" + currentTime.toString(),"usuario_creacion:"+ usuario,"fecha_modificacion:" + currentTime.toString(),"usuario_modificacion:"+usuario,"#_registros:1"};
+        FileWriter LineWriter = new FileWriter(file_descriptorArbol, true);
+        BufferedWriter LineWr = new BufferedWriter(LineWriter);
+        for (int i = 0; i < lines.length; i++)
+        {
+            LineWr.write(lines[i]);
+            if (i != lines.length - 1)
+            {
+            LineWr.newLine();
+            }
+        }
+        LineWr.close();
+        LineWriter.close();
+        } catch (IOException F) {}
+    }
     
-    
+    public void ActualizarDescriptorArbol(String usuario)
+    {
+        try{
+            File file_descriptorArbol = new File("MEIA\\desc_arbol.txt");
+            Date now = new Date();
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get(file_descriptorArbol.getAbsolutePath())));
+            lines.set(3, "fecha_modificacion:" + now.toString());
+            lines.set(4, "usuario_modificacion:" + usuario);
+            String[] arrOfStr = lines.get(5).split(":"); 
+            int entries = parseInt(arrOfStr[1]) + 1;
+            lines.set(5, "#_registros:" + entries);
+            
+            FileWriter Changer = new FileWriter(file_descriptorArbol, false);
+            BufferedWriter LineChanger = new BufferedWriter(Changer);
+            for (int i = 0; i < lines.size(); i++)
+            {
+                LineChanger.write(lines.get(i));
+                if (i != lines.size() - 1)
+                {
+                    LineChanger.newLine();
+                }
+            }
+            LineChanger.close();
+            LineChanger.close(); 
+            
+        }catch(IOException ex){}
+    }
+     
+     
+     
+     
+     
+     
 }

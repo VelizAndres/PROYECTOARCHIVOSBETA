@@ -220,8 +220,17 @@ public class CorreoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarlistaActionPerformed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
-            String lista = cb_lista.getSelectedItem().toString();
-            String usuario = cb_usuarios.getSelectedItem().toString();
+         
+        String lista="";
+        String usuario="";
+        if(cb_lista.getSelectedItem()==null)
+        {
+         usuario = cb_usuarios.getSelectedItem().toString();
+        }
+        else
+        {
+            lista = cb_lista.getSelectedItem().toString();
+        }
             ArbolBi Binario = new ArbolBi();
  
             if(lista.equals("")&& usuario.equals(""))
@@ -438,10 +447,10 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
         String fecha = hourdateFormat.format(date);
       
         String[] Nuevo_Registro = new String[10];
-        Nuevo_Registro[0] =String.format("%-15s", "");
+        Nuevo_Registro[0] =String.format("%-15s", "0");
         Nuevo_Registro[1] =String.format("%-5s", "-1");
         Nuevo_Registro[2] =String.format("%-5s", "-1");
-        Nuevo_Registro[3] =String.format("%-20s", lbl_usuario);
+        Nuevo_Registro[3] =String.format("%-20s", lbl_usuario.getText());
         Nuevo_Registro[4] =String.format("%-20s", Contacto);
         Nuevo_Registro[5] =String.format("%-20s", fecha);
         Nuevo_Registro[6] =String.format("%-20s", txt_asunto.getText());
@@ -457,7 +466,7 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
             String[] split = ruta.split("\\\\");
             //int posicion = ruta.lastIndexOf("");
             //String extension = ruta.substring(posicion);
-            String archivo_nuevo = "MEIA\\correo_db\\"+ split[split.length-1];
+            String archivo_nuevo = "MEIA\\correos_db\\"+ split[split.length-1];
             
             File destino = new File(archivo_nuevo);
             String path_nuevo = destino.getAbsolutePath();
@@ -467,7 +476,7 @@ public ArrayList<String> LlenarListas(String path, String usuario,String strErro
             try
             {
                 Files.copy(origen.toPath(), temporal.toPath(),REPLACE_EXISTING);
-                return path_nuevo;
+                return split[split.length-1];
             }
             catch(Exception ex)
             {
