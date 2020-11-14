@@ -17,6 +17,7 @@ import static java.lang.Integer.parseInt;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,9 +28,10 @@ import java.util.Date;
  */
 public class ArbolBi {
   
-    public void Insertar(String[] Registro)
+    public boolean Insertar(String[] Registro)
     {
-        int Cant = Obt_Cant_Registro();
+        try{
+            int Cant = Obt_Cant_Registro();
         Registro[0]=String.format("%-15s", (Cant+1));
         if(Cant==0)
         {
@@ -41,73 +43,18 @@ public class ArbolBi {
         //Proceso de insercion
         Recorrido_Insercion(Registro,1);  
         ActualizarDescriptorArbol(Registro[3].trim());
+        } 
+        return true;
         }
+       catch (ParseException ex)
+               {
+                  return false; 
+               }
     }
         
-     
-    public void Busqueda(String Clave, int tipo)
-    {
-        ArrayList<String> lista = new ArrayList<String>();
-        if(tipo==0)
-        {
-             lista = Buscar_registros(Clave,3,"");  
-        }
-        else
-        {
-             lista = Buscar_registros(Clave,4,"");  
-        }
-        for (int i = 0; i < lista.size(); i++) {
-      //      cb_listas.addItem(lista.get(i));
-        }
-    }
-     
-     private ArrayList<String> Buscar_registros(String Clave, int posicion,String strError){
-        ArrayList<String> lista = new ArrayList<String>();
-        File Archivo = new File("MEIA\\arbol.txt");
-        if(Archivo.exists()==true)
-        {
-            FileReader LecturaArchivo;
-            try {
-                LecturaArchivo = new FileReader(Archivo);
-                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
-                String Linea="";
-                try {
-                    Linea = LeerArchivo.readLine();
-                    String[] split;
-                    while(Linea != null)
-                    {
-                        if(!"".equals(Linea))
-                        {
-                            split = Linea.split("\\|");
-                            String estatus = split[9];
-                            String Usuario = split[posicion].trim();
-                            if(Clave.trim().equals(Usuario) && estatus.trim().equals("1"))
-                            {
-                                lista.add(split[1]);
-                            } 
-                        }
-                        Linea = LeerArchivo.readLine();
-                    }
-
-                    LecturaArchivo.close();
-                    LeerArchivo.close();  
-                    System.gc();
-                } catch (IOException ex) {
-                    strError = ex.getMessage();
-                }
-            } catch (FileNotFoundException ex) {
-                strError= ex.getMessage();
-            }            
-        }
-        else
-        {
-            strError="No existe el archivo";
-        }
-        return lista;
-    }
+      
     
-    
-    private void Recorrido_Insercion(String[] Nuevo,int posicion)
+    private void Recorrido_Insercion(String[] Nuevo,int posicion) throws ParseException
     {
         String[] Registro = Obtener_Registro(posicion); 
         int Resul_comparacion = Comparador(Registro, Nuevo);
@@ -131,7 +78,7 @@ public class ArbolBi {
             if(Registro[2].trim().equals("-1"))
             {
             Insertar_Registro(Nuevo);                
-                          Modificar_Hijos(Integer.parseInt(Registro[0].trim()),Integer.parseInt(Nuevo[0].trim()),false);
+            Modificar_Hijos(Integer.parseInt(Registro[0].trim()),Integer.parseInt(Nuevo[0].trim()),false);
            //Insertar el nuevo valor aqui
             }
             else
@@ -145,7 +92,7 @@ public class ArbolBi {
     
     private boolean Insertar_Registro(String[] Registro)
     {
-        File file_arbol = new File("MEIA\\arbol.txt");   
+       File file_arbol = new File("MEIA\\arbol.txt");   
         try
         {
             String Nuevo= "";
@@ -172,7 +119,7 @@ public class ArbolBi {
         try
         {
         RandomAccessFile archivo = new RandomAccessFile("MEIA\\arbol.txt", "rw");
-        archivo.seek(posicion*251);
+         archivo.seek((posicion*251));
         String text = archivo.readLine();
         archivo.close();
         String[] contenedor = text.split("\\|");
@@ -186,11 +133,7 @@ public class ArbolBi {
             }
     }
     
-    
-    
-    
-    
-    
+ 
         private void Modificar_Hijos(int Padre, int hijo, boolean Izq)
     {
         try
@@ -210,8 +153,9 @@ public class ArbolBi {
         linea += contenedor[i]+"|";   
         }
         linea += contenedor[contenedor.length-1];
-        RandomAccessFile escritor = new RandomAccessFile("MEIA\\arbol.txt", "rw");
-      //  escritor.seek(Padre*251);
+       RandomAccessFile escritor = new RandomAccessFile("MEIA\\arbol.txt", "rw");
+        escritor.seek(Padre*251);
+        //escritor.seek((Padre*250)+1);
         escritor.writeBytes(linea);
         escritor.close();
         }
@@ -222,17 +166,25 @@ public class ArbolBi {
     }
     
     
-     private int Comparador(String[] contenedor,String Claves[])
+     private int Comparador(String[] contenedor,String Claves[]) throws ParseException
     {
-        int pos=contenedor[3].trim().compareTo(Claves[3].trim());
+        int pos=Claves[3].trim().toLowerCase().compareTo(contenedor[3].trim().toLowerCase());
         if(pos==0)
         {
-            pos = contenedor[4].trim().compareTo(Claves[4].trim());
+            pos = Claves[4].trim().toLowerCase().compareTo(contenedor[4].trim().toLowerCase());
             if(pos==0)
             {
-                
-                    pos=contenedor[5].trim().compareTo(Claves[5].trim());
-                    return pos;    
+                DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date fecha1 = hourdateFormat.parse(Claves[5].trim());
+                Date fecha2 = hourdateFormat.parse(contenedor[5].trim());
+                if(fecha1.before(fecha2))
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             else{
                 return pos;

@@ -221,7 +221,9 @@ public class CorreoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarlistaActionPerformed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
-         
+        ArbolBi Binario = new ArbolBi();
+        boolean Insert_correct=false;
+        String Mensaje ="";
         String lista="";
         String usuario="";
         if(cb_lista.getSelectedItem()==null)
@@ -232,7 +234,6 @@ public class CorreoNuevo extends javax.swing.JFrame {
         {
             lista = cb_lista.getSelectedItem().toString();
         }
-            ArbolBi Binario = new ArbolBi();
  
             if(lista.equals("")&& usuario.equals(""))
             {
@@ -253,19 +254,30 @@ public class CorreoNuevo extends javax.swing.JFrame {
                     for(String receptor : Contactos_list)
                     {
                         String[] Registro= Formalizar_Correo(receptor,ArchivoAdjunto);
-                        Binario.Insertar(Registro); 
+                       Insert_correct=   Binario.Insertar(Registro); 
                     }
+                    Mensaje = " han enviado los mensajes";
                 }
                 if(!usuario.equals(""))
                 {
                     String[] Registro= Formalizar_Correo(usuario,ArchivoAdjunto);
-                    Binario.Insertar(Registro); 
-                }
+                  Insert_correct=  Binario.Insertar(Registro); 
+                    Mensaje = " ha enviado el mensaje";
+}
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(rootPane, "No debe sobrepasar los campos","Error", ERROR);
                 }   
+                if(Insert_correct)
+                {
+                JOptionPane.showMessageDialog(rootPane, "Se"+ Mensaje +" con éxito","Guardado", WIDTH);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "No se"+ Mensaje +" con éxito","ERROR", ERROR);
+                }
+            
             }
         
     }//GEN-LAST:event_btn_enviarActionPerformed

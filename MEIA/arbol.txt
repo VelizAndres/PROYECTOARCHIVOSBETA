@@ -1,2 +1,1 @@
 No_registro    |Izq  |Der  |Usuario_emisor      |Usuario_receptor    |Fecha_transaccion   |Asunto              |Mensaje                                                                                             |Adjunto                  |Estatus   
-1              |-1   |-1   |Alcon               |jamg2               |13/11/2020 16:23:19 |Prueba 1            |Andres Fallo esto otra vez                                                                          |                         |1         
