@@ -1,8 +1,8 @@
 nombre_simbolico: bitacora_lista
 fecha_creacion: 
 usuario_creacion: 
-fecha_modificacion: 26/10/2020 09:11:17
+fecha_modificacion: 14/11/2020 16:41:42
 usuario_modificacion: PRUEBA
-#_registros: 0
-registros_activos: 0
+#_registros: 5
+registros_activos: 5
 registros_inactivos: 0

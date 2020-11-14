@@ -1,11 +1,11 @@
 nombre_simbolico: indice_Lista_usuario
 fecha_creacion: 
 usuario_creacion:
-fecha_modificacion: 28/10/2020 10:30:45
-usuario_modificacion: PRUEBA              
-#_registros: 4
-registros_inactivos: 0
+fecha_modificacion: 14/11/2020 16:29:39
+usuario_modificacion: PRUEBA
+#_registros: 6
+registros_activos: 2
 registros_inactivos: 1
 max_reorganizacion: 5
-registro_inicial: 4
+registro_inicial: 3
 #_bloques: 1

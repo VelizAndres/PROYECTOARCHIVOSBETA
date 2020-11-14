@@ -1,3 +1,1 @@
 nombre                        |usuario             |descripcion                             |numero_usuarios|fecha_creacion      |estatus
-Uni                           |Mario               |bros                                    |0              |27/10/2020 21:37:12 |1      
-Amigos                        |Mario               |Amistades                               |0              |27/10/2020 21:37:21 |1      

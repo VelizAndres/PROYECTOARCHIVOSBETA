@@ -1,5 +1,9 @@
-nombre_simbolico: bitacora_lista
-fecha_creacion: 
-usuario_creacion: 
-fecha_modificacion: 26/10/2020 21:46:18
+nombre_simbolico: bitacora_usuario
+fecha_creacion: 20/10/2020 21:17:53
+usuario_creacion: josedeleon
+fecha_modificacion: 14/11/2020 16:41:42
 usuario_modificacion: PRUEBA
+#_registros: 0
+registros_activos: 0
+registros_inactivos: 0
+max_reorganizacion: 3

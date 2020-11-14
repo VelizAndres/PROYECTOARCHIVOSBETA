@@ -1,3 +1,6 @@
 nombre                        |usuario             |descripcion                             |numero_usuarios|fecha_creacion      |estatus
-U1                            |PRUEBA              |univesidad1                             |3              |26/10/2020 21:46:12 |1      
-U2                            |PRUEBA              |univesidad2                             |3              |26/10/2020 21:46:17 |1      
+Amigos                        |Amistades           |Mario                                   |0              |27/10/2020 21:37:21 |1      
+Jose                          |prueba              |PRUEBA                                  |0              |14/11/2020 16:41:42 |1      
+U1                            |univesidad1         |PRUEBA                                  |3              |26/10/2020 21:46:12 |1      
+U2                            |univesidad2         |PRUEBA                                  |5              |26/10/2020 21:46:17 |1      
+Uni                           |bros                |Mario                                   |0              |27/10/2020 21:37:12 |1      

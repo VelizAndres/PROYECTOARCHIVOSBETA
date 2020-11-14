@@ -78,7 +78,7 @@ public class NuevaLista extends javax.swing.JFrame {
 
         jLabel4.setText("Descripción");
 
-        lbl_usuario.setText("Usuario");
+        lbl_usuario.setText("PRUEBA");
 
         ingresarButton.setText("Ingresar");
         ingresarButton.addActionListener(new java.awt.event.ActionListener() {

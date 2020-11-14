@@ -3,3 +3,5 @@ U2                            |PRUEBA              |CCC                 |desc   
 U1                            |PRUEBA              |BBB                 |desc                                    |28/10/2020 10:24:55 |1         
 U1                            |PRUEBA              |AAA                 |desc                                    |28/10/2020 10:25:49 |1         
 U1                            |PRUEBA              |DDD                 |desc                                    |28/10/2020 10:25:59 |1         
+U2                            |PRUEBA              |DDD                 |prueba funcionamiento                   |14/11/2020 14:29:17 |1         
+U2                            |PRUEBA              |AAA                 |prueba                                  |14/11/2020 16:29:39 |1         
