@@ -1,5 +1,4 @@
 nombre_simbolico: bitacora_contactos
-<<<<<<< HEAD
 fecha_creacion: 
 usuario_creacion: 
 fecha_modificacion: 26/10/2020 09:07:09
@@ -7,12 +6,3 @@ usuario_modificacion: PRUEBA
 #_registros: 3
 registros_activos: 2
 registros_inactivos: 1
-=======
-fecha_creacion: 20/10/2020 21:17:53
-usuario_creacion: josedeleon
-fecha_modificacion: 28/10/2020 01:26:09
-usuario_modificacion: Mario               
-#_registros: 9
-registros_activos: 9
-registros_inactivos: 0
->>>>>>> 4f8459eac3430bd92442e48507391c3f271ee3b3

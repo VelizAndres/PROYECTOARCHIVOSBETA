@@ -1,17 +1,5 @@
 usuario             |contacto            |fecha_transaccion   |usuario_transaccion |estatus   
-<<<<<<< HEAD
 PRUEBA              |BBB                 |26/10/2020 09:07:59 |PRUEBA              |1         
 PRUEBA              |AAA                 |26/10/2020 09:05:54 |PRUEBA              |1         
 PRUEBA              |CCC                 |26/10/2020 09:07:51 |PRUEBA              |1         
 PRUEBA              |DDD                 |26/10/2020 09:07:59 |PRUEBA              |1         
-=======
-Black               |Veliz               |28/10/2020 01:26:08 |Black               |1         
-Mario               |AAA                 |28/10/2020 01:26:08 |Mario               |1         
-Mario               |BBB                 |28/10/2020 01:26:09 |Mario               |1         
-Mario               |Black               |28/10/2020 01:26:09 |Mario               |1         
-TEST                |AAA                 |28/10/2020 01:26:09 |TEST                |1         
-TEST                |BBB                 |28/10/2020 01:26:09 |TEST                |1         
-TEST                |CCC                 |28/10/2020 01:26:09 |TEST                |1         
-TEST                |XXX                 |28/10/2020 01:26:09 |TEST                |1         
-TEST                |YYY                 |28/10/2020 01:26:09 |TEST                |1         
->>>>>>> 4f8459eac3430bd92442e48507391c3f271ee3b3

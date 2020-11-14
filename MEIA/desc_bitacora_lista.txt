@@ -1,14 +1,5 @@
 nombre_simbolico: bitacora_lista
 fecha_creacion: 
 usuario_creacion: 
-<<<<<<< HEAD
 fecha_modificacion: 26/10/2020 21:46:18
 usuario_modificacion: PRUEBA
-=======
-fecha_modificacion: 27/10/2020 21:37:21
-usuario_modificacion: Mario
->>>>>>> 4f8459eac3430bd92442e48507391c3f271ee3b3
-#_registros: 2
-registros_activos: 2
-registros_inactivos: 0
-max_reorganizacion: 3
