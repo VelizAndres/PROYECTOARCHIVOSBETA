@@ -1,6 +1,6 @@
 nombre_simbolico:desc_arbol
-fecha_creacion:Fri Nov 13 00:42:52 CST 2020
-usuario_creacion:Andres
-fecha_modificacion:Fri Nov 13 14:03:09 CST 2020
-usuario_modificacion:jamg2
-#_registros:17
+fecha_creacion:Fri Nov 13 16:37:18 CST 2020
+usuario_creacion:Alcon
+fecha_modificacion:Fri Nov 13 18:36:27 CST 2020
+usuario_modificacion:Alcon
+#_registros:2

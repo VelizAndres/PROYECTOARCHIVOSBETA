@@ -117,10 +117,11 @@ public class ArbolBi {
             {
                 //Insertar el nuevo valor aqui
                             Insertar_Registro(Nuevo);                
-            }
+                         Modificar_Hijos(Integer.parseInt(Registro[0].trim()),Integer.parseInt(Nuevo[0].trim()),true);
+ }
             else
             {
-                posicion=  Integer.parseInt(Registro[1].trim());
+         posicion=  Integer.parseInt(Registro[1].trim());
                 Recorrido_Insercion(Nuevo,posicion);
                                //Entrar hijo izq
             }
@@ -130,7 +131,8 @@ public class ArbolBi {
             if(Registro[2].trim().equals("-1"))
             {
             Insertar_Registro(Nuevo);                
-            //Insertar el nuevo valor aqui
+                          Modificar_Hijos(Integer.parseInt(Registro[0].trim()),Integer.parseInt(Nuevo[0].trim()),false);
+           //Insertar el nuevo valor aqui
             }
             else
             {
@@ -156,7 +158,7 @@ public class ArbolBi {
             BufferedWriter bw = new BufferedWriter(Escribir);
             bw.write(Nuevo + System.getProperty( "line.separator" ));
             bw.close();
-            Escribir.close();    
+            Escribir.close();  
             return true;
         }
         catch(Exception ex)
@@ -172,6 +174,7 @@ public class ArbolBi {
         RandomAccessFile archivo = new RandomAccessFile("MEIA\\arbol.txt", "rw");
         archivo.seek(posicion*251);
         String text = archivo.readLine();
+        archivo.close();
         String[] contenedor = text.split("\\|");
         return contenedor;
         }
@@ -184,12 +187,47 @@ public class ArbolBi {
     }
     
     
+    
+    
+    
+    
+        private void Modificar_Hijos(int Padre, int hijo, boolean Izq)
+    {
+        try
+        {
+        String[] contenedor = Obtener_Registro(Padre);
+        if(Izq)
+        {
+            contenedor[1] = String.format("%-5s", hijo);
+        }
+        else
+        {
+            contenedor[2] = String.format("%-5s", hijo);
+        }
+        String linea = "";
+        for(int i=0;i<contenedor.length-1;i++)
+        {
+        linea += contenedor[i]+"|";   
+        }
+        linea += contenedor[contenedor.length-1];
+        RandomAccessFile escritor = new RandomAccessFile("MEIA\\arbol.txt", "rw");
+      //  escritor.seek(Padre*251);
+        escritor.writeBytes(linea);
+        escritor.close();
+        }
+        catch   (IOException ex) {
+        {
+        }
+        }
+    }
+    
+    
      private int Comparador(String[] contenedor,String Claves[])
     {
         int pos=contenedor[3].trim().compareTo(Claves[3].trim());
         if(pos==0)
         {
-            pos=contenedor[4].trim().compareTo(Claves[4].trim());
+            pos = contenedor[4].trim().compareTo(Claves[4].trim());
             if(pos==0)
             {
                 
@@ -280,10 +318,6 @@ public class ArbolBi {
             
         }catch(IOException ex){}
     }
-     
-     
-     
-     
      
      
 }
