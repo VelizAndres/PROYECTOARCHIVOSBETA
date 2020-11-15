@@ -413,6 +413,7 @@ public class Inicio extends javax.swing.JFrame {
         bandeja_e.setLocationRelativeTo(null);
         bandeja_e.show();
         bandeja_e.lbl_usuario.setText(lbl_usuario.getText().trim());
+        bandeja_e.panel_detalle.setVisible(false);
         bandeja_e.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btn_bandeja_salidaActionPerformed
 

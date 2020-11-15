@@ -11,9 +11,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import static proyecto.meia.Inicio.lbl_usuario;
 
 
 /**
@@ -41,9 +48,25 @@ public class Bandeja_enviados extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbl_usuario = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lst_correos = new javax.swing.JList<>();
-        BUSCAR = new javax.swing.JButton();
+        txt_abrir = new javax.swing.JButton();
+        cb_Correos = new javax.swing.JComboBox<>();
+        BUSCAR1 = new javax.swing.JButton();
+        panel_detalle = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txt_asunto = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_contacto = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btn_Descarga = new javax.swing.JButton();
+        lbl_fecha = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txt_archivoAdj = new javax.swing.JTextPane();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txt_mensaje = new javax.swing.JTextPane();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,67 +74,228 @@ public class Bandeja_enviados extends javax.swing.JFrame {
         jLabel1.setText("BANDEJA DE ENVIADOS");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel2.setText("USUARIO                 |ASUNTO           |MENSAJE");
+        jLabel2.setText("USUARIO                 |FECHA               |ASUNTO");
 
         lbl_usuario.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         lbl_usuario.setText("---");
 
-        lst_correos.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(lst_correos);
-
-        BUSCAR.setText("BUSCAR");
-        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+        txt_abrir.setText("ABRIR");
+        txt_abrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUSCARActionPerformed(evt);
+                txt_abrirActionPerformed(evt);
             }
         });
+
+        cb_Correos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        BUSCAR1.setText("BUSCAR");
+        BUSCAR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUSCAR1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Asunto:");
+
+        txt_asunto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_asunto.setEnabled(false);
+        jScrollPane8.setViewportView(txt_asunto);
+
+        txt_contacto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_contacto.setEnabled(false);
+        jScrollPane2.setViewportView(txt_contacto);
+
+        jLabel4.setText("Mensaje:");
+
+        jLabel5.setText("Archivo Adjunto:");
+
+        btn_Descarga.setText("Descargar");
+        btn_Descarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DescargaActionPerformed(evt);
+            }
+        });
+
+        lbl_fecha.setText("Fecha");
+
+        txt_archivoAdj.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_archivoAdj.setEnabled(false);
+        jScrollPane3.setViewportView(txt_archivoAdj);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Contacto:");
+
+        txt_mensaje.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_mensaje.setEnabled(false);
+        jScrollPane4.setViewportView(txt_mensaje);
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel7.setText("DETALLES");
+
+        javax.swing.GroupLayout panel_detalleLayout = new javax.swing.GroupLayout(panel_detalle);
+        panel_detalle.setLayout(panel_detalleLayout);
+        panel_detalleLayout.setHorizontalGroup(
+            panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_detalleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleLayout.createSequentialGroup()
+                        .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3))
+                        .addGap(10, 10, 10)
+                        .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_detalleLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel_detalleLayout.createSequentialGroup()
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 49, Short.MAX_VALUE))))
+                    .addGroup(panel_detalleLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_detalleLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(btn_Descarga))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        panel_detalleLayout.setVerticalGroup(
+            panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_detalleLayout.createSequentialGroup()
+                .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_detalleLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbl_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_detalleLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 75, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_detalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Descarga)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(156, 156, 156)))
-                        .addGap(139, 139, 139))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(cb_Correos, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BUSCAR1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_abrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbl_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(268, 268, 268))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 36, Short.MAX_VALUE)
+                        .addComponent(panel_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addComponent(lbl_usuario)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(BUSCAR))
+                    .addComponent(BUSCAR1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addComponent(cb_Correos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_abrir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panel_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
+    private void txt_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_abrirActionPerformed
+        String Registro_e = cb_Correos.getSelectedItem().toString();
+        if(!Registro_e.isEmpty())
+        {
+        String[] registro_correo =  Registro_e.split("\\|");
+        txt_contacto.setText(registro_correo[0].trim());
+        lbl_fecha.setText(registro_correo[1].trim());
+        txt_asunto.setText(registro_correo[2].trim());
+        txt_mensaje.setText(registro_correo[3].trim());
+        txt_archivoAdj.setText(registro_correo[4].trim());
+        panel_detalle.setVisible(true);
+        }
+    }//GEN-LAST:event_txt_abrirActionPerformed
+
+    private void BUSCAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCAR1ActionPerformed
         // TODO add your handling code here:
-                BuscarRegistros();
-    }//GEN-LAST:event_BUSCARActionPerformed
+        BuscarRegistros();
+    }//GEN-LAST:event_BUSCAR1ActionPerformed
+
+    private void btn_DescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DescargaActionPerformed
+        // TODO add your handling code here:
+       try{
+        String ArchivoAdj = txt_archivoAdj.getText();
+       if(!ArchivoAdj.isEmpty()){
+        JFileChooser ventana = new JFileChooser();
+        ventana.setCurrentDirectory(new java.io.File("."));
+        ventana.setDialogTitle("Seleccione una carpeta donde desea descargar el archivo");
+        ventana.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        ventana.setAcceptAllFileFilterUsed(false);
+        String DestinationFolder = "";
+        File DataDirectory = new File("MEIA\\correos_db\\");
+        String path_Adj =  DataDirectory.getAbsolutePath() + "\\"+ArchivoAdj;
+        if (ventana.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) 
+        { 
+          DestinationFolder = ventana.getSelectedFile().getAbsolutePath() +"\\"+ArchivoAdj ;
+        }  
+        Path destination = Paths.get(DestinationFolder);
+        Path Origen = Paths.get(path_Adj);
+        
+        Files.copy(Origen,destination , StandardCopyOption.REPLACE_EXISTING);
+        JOptionPane.showMessageDialog(rootPane, "Descarga exitosa","INFO", WIDTH);
+       }
+       } 
+        catch(IOException e){
+        JOptionPane.showMessageDialog(rootPane, "Fallo la descarga","Error", ERROR);
+        }
+    }//GEN-LAST:event_btn_DescargaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,22 +334,19 @@ public class Bandeja_enviados extends javax.swing.JFrame {
 
     public void BuscarRegistros()
     {
-        DefaultListModel modeloCorreo = new DefaultListModel();
                 ArrayList<String> agregados2 = LlenarAdmin("MEIA\\arbol.txt",lbl_usuario.getText(),"Error");
                 for (int i = 0; i < agregados2.size(); i++) {
-                    String correoNormalizado = NormalizarCorreo(agregados2.get(i));
-             modeloCorreo.addElement(correoNormalizado);
+                    cb_Correos.addItem(agregados2.get(i));
                 }
                 if(agregados2.isEmpty())
                 {
                     JOptionPane.showMessageDialog(null, "No se encontraron correos asociados","Error", WIDTH);
                 }
-                lst_correos.setModel(modeloCorreo);
     }
 
 public String NormalizarCorreo(String correo){
     String[] line = correo.split("\\|");
-    String result = "PARA: "+line[4]+"|"+line[6]+"|"+line[7].trim();
+    String result = line[4]+"|"+String.format("%-30s",line[5])+"|"+String.format("%-90s",line[6])+"|"+line[7].trim()+"|" + line[8];
     return result;
 }
 
@@ -193,7 +374,7 @@ public ArrayList<String> LlenarAdmin(String path, String usuario,String strError
                             String current_user = split[3].trim();
                             if(usuario.trim().equals(current_user) && estatus.trim().equals("1"))
                             {
-                                lista.add(Linea);
+                                lista.add(NormalizarCorreo(Linea));
                             } 
                         }
                         Linea = LeerArchivo.readLine();
@@ -217,11 +398,27 @@ public ArrayList<String> LlenarAdmin(String path, String usuario,String strError
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUSCAR;
+    private javax.swing.JButton BUSCAR1;
+    private javax.swing.JButton btn_Descarga;
+    private javax.swing.JComboBox<String> cb_Correos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane8;
+    public static javax.swing.JLabel lbl_fecha;
     public static javax.swing.JLabel lbl_usuario;
-    private javax.swing.JList<String> lst_correos;
+    public static javax.swing.JPanel panel_detalle;
+    private javax.swing.JButton txt_abrir;
+    public static javax.swing.JTextPane txt_archivoAdj;
+    public static javax.swing.JTextPane txt_asunto;
+    public static javax.swing.JTextPane txt_contacto;
+    public static javax.swing.JTextPane txt_mensaje;
     // End of variables declaration//GEN-END:variables
 }

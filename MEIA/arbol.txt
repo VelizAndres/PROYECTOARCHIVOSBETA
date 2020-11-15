@@ -1,1 +1,2 @@
 No_registro    |Izq  |Der  |Usuario_emisor      |Usuario_receptor    |Fecha_transaccion   |Asunto              |Mensaje                                                                                             |Adjunto                  |Estatus   
+1              |-1   |-1   |PRUEBADIEGO         |JOSE                |14/11/2020 23:43:28 |Hello               |asdf                                                                                                |ProyectoORGA2.lvw        |1         
